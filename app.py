@@ -3,6 +3,8 @@ import requests
 import json
 import os
 
+json_data = []
+
 
 app= Flask(__name__)
 
@@ -11,12 +13,27 @@ def home():
 	return render_template("d3.html")
 
 
+@app.route('/add/',methods=["GET","POST"])
+def add():
+	global json_data
+	json_add={}
+	if request.method == 'GET':
+		json_add["Period Derivative"] = request.form['y']
+		json_add["Period"] = request.form['x']
+		json_data.append(json_add)
+		print json_add
+		print json_data
+		return redirect('/')
+	else:
+		print "error"
+
 
 
 if __name__ == '__main__':
+	global json_data
 	r = requests.get('http://msi.mcgill.ca/GSoC_NANOGrav/pulsar_data_test.json')
 	json_data = r.json()
 	print json_data
-	app.run(host='0.0.0.0',debug=True,port = 8000)
+	app.run(debug=True)
 	
 
