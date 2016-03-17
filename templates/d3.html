@@ -1,0 +1,214 @@
+<doctype html>
+<html>
+
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http:/d3js.org/d3.v3.min.js"></script>
+<title>d3</title>
+<style >
+	
+.axis path,
+.axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    font-family: sans-serif;
+    font-size: 11px;
+}
+
+
+</style>
+
+
+
+</head>
+<body>
+<script >
+
+
+
+/*var dataset = [
+                  [ 5,     20 ],
+                  [ 480,   90 ],
+                  [ 250,   50 ],
+                  [ 100,   33 ],
+                  [ 330,   95 ],
+                  [ 410,   12 ],
+                  [ 475,   44 ],
+                  [ 25,    67 ],
+                  [ 85,    21 ],
+                  [ 220,   88 ],
+                  [1000,50]
+              ];
+*/
+window.dataset = [
+                  { "x":5, "y":20 },
+                  { "x":480, "y":90 },
+                  { "x":250, "y":50 },
+                  { "x":100,   "y":33 },
+                  {"x": 330,  "y": 95 },
+                  { "x":410,"y":12 },
+                  { "x":475, "y":44 },
+                  { "x":25,"y":67 },
+                  { "x":85, "y":21 },
+                  { "x":220, "y":88 },
+                  {"x":1000,"y":50}
+              ];
+
+var newdataset = [
+
+              ];
+
+var w = 600;
+var h = 600;
+var padding = 50;
+
+
+
+
+
+var xscale = d3.scale.linear()
+			 .domain([0, d3.max(dataset, function(d) { return d["x"]; })])
+             .range([padding, w-padding]);
+
+
+var yscale = d3.scale.linear()
+                     .domain([0, d3.max(dataset, function(d) { return d["y"]; })])
+                     .range([h-padding,padding]);
+
+var xaxis = d3.svg.axis()
+			.scale(xscale)
+			.orient("bottom")
+			.ticks(5);
+
+var yaxis = d3.svg.axis()
+                  .scale(yscale)
+                  .orient("left")
+                  .ticks(5);
+
+
+/*var axis = d3.svg.axis()
+			.ticks(5)
+			.scale(xscale);
+*/
+
+
+	/*.call(axis);*/
+
+	
+	/*var circle = canvas.append("circle")
+						.attr("cx",250)
+						.attr("cy",250)
+						.attr("r",4)
+						.attr("fill","red")*/
+	
+
+var canvas =  d3.select("body").append("svg")
+	.attr("width",w).attr("height",h)
+   .call(d3.behavior.zoom().on("zoom", function () {
+       canvas.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")")
+      }))
+	.append("g");
+	
+
+
+canvas.append("g")
+    .attr("class", "x_axis") 
+     .attr("transform", "translate(0," + (h - padding) + ")")//Assign "axis" class
+    .call(xaxis);
+
+
+canvas.append("g")
+    .attr("class", "y_axis")
+    .attr("transform", "translate(" + padding + ",0)")
+    .call(yaxis);
+
+function refreshgraph(){
+console.log(dataset);
+  xscale.domain([0, d3.max(dataset, function(d) { return d["x"]; })]);
+  yscale .domain([0, d3.max(dataset, function(d) { return d["y"]; })]);
+
+xaxis.scale(xscale);
+yaxis.scale(yscale);
+
+canvas.selectAll("g.x_axis").call(xaxis);
+canvas.selectAll("g.y_axis").call(yaxis);
+
+/*
+canvas.call(xaxis);
+canvas.call(yaxis);
+*/
+
+
+canvas.selectAll("circle")
+.data(dataset)
+.enter()
+.append("circle")
+
+  .transition()
+  .delay(function(d, i) {
+    return i * 100;
+  })
+  .duration(3000)
+ 
+.attr("cx", function(d) { return xscale(d["x"]); })
+.attr("cy", function(d) { return yscale(d["y"]); })
+.attr("r", "5px")
+.attr("fill", "black")
+
+
+}
+
+function updateadd()
+{
+
+window.dataset.push({x:100,y:0},
+                  {x:200,y:500},
+                  {x:200,y:0},
+                  {x:100,y:0},
+                  {x:500,y:0},
+                  {x:400,y:0},
+                  {x:5000,y:0});
+
+refreshgraph();
+}
+function updateadd1()
+{
+
+dataset.push([100,0],
+                  [200,200],
+                  [300,400],
+                  [500,500],
+                  [600,600],
+                  [700,700],
+                  [800,800]);
+
+refreshgraph();
+}
+
+refreshgraph();
+
+
+
+</script>
+
+
+<button style="height:20px,width:20px" onclick="updateadd()">click</button>
+
+
+<button style="height:20px,width:20px" onclick="updateadd1()">click</button>
+
+
+</body>
+
+
+
+
+
+
+
+
+</html>
