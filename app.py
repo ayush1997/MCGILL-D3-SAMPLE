@@ -13,11 +13,18 @@ def home():
 	return render_template("d3.html")
 
 
+@app.route('/data' ,methods=["GET"])
+def getdata():
+	global json_data
+
+	return jsonify({"data":json_data})
+
+
 @app.route('/add/',methods=["GET","POST"])
 def add():
 	global json_data
 	json_add={}
-	if request.method == 'GET':
+	if request.method == 'POST':
 		json_add["Period Derivative"] = request.form['y']
 		json_add["Period"] = request.form['x']
 		json_data.append(json_add)
@@ -27,7 +34,7 @@ def add():
 	else:
 		print "error"
 
-
+print json_data
 
 if __name__ == '__main__':
 	global json_data
