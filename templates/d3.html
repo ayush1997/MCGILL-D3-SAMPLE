@@ -30,7 +30,7 @@
 </head>
 <body>
 <script >
-
+/*
 $.ajax({
 
   url:"/data",
@@ -44,17 +44,9 @@ console.log(data["data"]);
 
 
 });
+*/
 
 
-d3.json("data",function(data){
-  dataset = data["data"];
-  console.log(dataset);
-  refreshgraph(dataset);
-})
-
-
-/*dataset=
-[{'RMS': 1.23, 'DM': 30.57, 'Binary': 'Y', 'Period': 0.0040918, 'Raw Profiles': 520, 'Plsar': '1853+1303', 'TOAs': 1369, 'Period Derivative': 8.7164e-21}, {'RMS': 2.7, 'DM': 9.02, 'Binary': 'Y', 'Period': 0.00525575, 'Raw Profiles': 726, 'Plsar': '1012+5307', 'TOAs': 11597, 'Period Derivative': 1.71268e-20}, {'RMS': 3.67, 'DM': 41.49, 'Binary': '-', 'Period': 0.00463803, 'Raw Profiles': 125, 'Plsar': '0931-1902', 'TOAs': 712, 'Period Derivative': 4.0544e-21}, {'RMS': 1.35, 'DM': 38.78, 'Binary': 'Y', 'Period': 0.00306184, 'Raw Profiles': 688, 'Plsar': '0613-0200', 'TOAs': 7422, 'Period Derivative': 9.5904e-21}, {'RMS': 1.01, 'DM': 52.33, 'Binary': 'Y', 'Period': 0.00359793, 'Raw Profiles': 603, 'Plsar': '1600-3053', 'TOAs': 7804, 'Period Derivative': 9.5005e-21}, {'RMS': 4.6, 'DM': 152.96, 'Binary': '-', 'Period': 0.00164561, 'Raw Profiles': 210, 'Plsar': '1747-4036', 'TOAs': 2771, 'Period Derivative': 1.31565e-20}, {'RMS': 2.58, 'DM': 22.16, 'Binary': '-', 'Period': 0.00522327, 'Raw Profiles': 403, 'Plsar': '2010-1323', 'TOAs': 7667, 'Period Derivative': 4.8245e-21}, {'RMS': 0.6, 'DM': 20.71, 'Binary': 'Y', 'Period': 0.00237988, 'Raw Profiles': 468, 'Plsar': '2043+1711', 'TOAs': 1382, 'Period Derivative': 5.2427e-21}, {'RMS': 0.72, 'DM': 23.92, 'Binary': 'Y', 'Period': 0.00289622, 'Raw Profiles': 435, 'Plsar': '2017+0603', 'TOAs': 1565, 'Period Derivative': 8.0006e-21}, {'RMS': 5.52, 'DM': 13.3, 'Binary': 'Y', 'Period': 0.0053621, 'Raw Profiles': 696, 'Plsar': '1855+09', 'TOAs': 4005, 'Period Derivative': 1.78411e-20}, {'RMS': 0.19, 'DM': 15.99, 'Binary': 'Y', 'Period': 0.00457014, 'Raw Profiles': 1609, 'Plsar': '1713+0747', 'TOAs': 15257, 'Period Derivative': 8.5297e-21}, {'RMS': 4.4, 'DM': 18.86, 'Binary': '-', 'Period': 0.00378816, 'Raw Profiles': 319, 'Plsar': '1923+2515', 'TOAs': 920, 'Period Derivative': 9.5525e-21}, {'RMS': 4.6, 'DM': 4.33, 'Binary': '-', 'Period': 0.00486545, 'Raw Profiles': 546, 'Plsar': '0030+0451', 'TOAs': 2455, 'Period Derivative': 1.01741e-20}, {'RMS': 0.72, 'DM': 3.14, 'Binary': '-', 'Period': 0.00407455, 'Raw Profiles': 670, 'Plsar': '1744-1134', 'TOAs': 8665, 'Period Derivative': 8.9339e-21}, {'RMS': 0.2, 'DM': 10.39, 'Binary': 'Y', 'Period': 0.00294711, 'Raw Profiles': 857, 'Plsar': '1909-3744', 'TOAs': 10259, 'Period Derivative': 1.40254e-20}, {'RMS': 5.79, 'DM': 13.73, 'Binary': 'Y', 'Period': 0.00519232, 'Raw Profiles': 218, 'Plsar': '2302+4442', 'TOAs': 3037, 'Period Derivative': 1.3771e-20}, {'RMS': 0.65, 'DM': 18.46, 'Binary': 'Y', 'Period': 0.00316332, 'Raw Profiles': 647, 'Plsar': '1640+2224', 'TOAs': 2503, 'Period Derivative': 2.8175e-21}, {'RMS': 1.34, 'DM': 14.32, 'Binary': 'Y', 'Period': 0.0030502, 'Raw Profiles': 335, 'Plsar': '0023+0923', 'TOAs': 4373, 'Period Derivative': 1.14211e-20}, {'RMS': 1.87, 'DM': 28.19, 'Binary': '-', 'Period': 0.00271911, 'Raw Profiles': 121, 'Plsar': '1832-0836', 'TOAs': 1131, 'Period Derivative': 8.7345e-21}, {'RMS': 3.05, 'DM': 62.42, 'Binary': 'Y', 'Period': 0.00462164, 'Raw Profiles': 755, 'Plsar': '1643-1224', 'TOAs': 6921, 'Period Derivative': 1.84651e-20}, {'RMS': 1.37, 'DM': 33.77, 'Binary': 'Y', 'Period': 0.0058501, 'Raw Profiles': 478, 'Plsar': '1738+0333', 'TOAs': 2623, 'Period Derivative': 2.41148e-20}, {'RMS': 1.75, 'DM': 6.49, 'Binary': '-', 'Period': 0.0051622, 'Raw Profiles': 389, 'Plsar': '1024-0719', 'TOAs': 4830, 'Period Derivative': 1.85516e-20}, {'RMS': 0.57, 'DM': 18.25, 'Binary': '-', 'Period': 0.0088535, 'Raw Profiles': 232, 'Plsar': '0645+5158', 'TOAs': 2891, 'Period Derivative': 4.92e-21}, {'RMS': 1.58, 'DM': 9.03, 'Binary': 'Y', 'Period': 0.01605242, 'Raw Profiles': 570, 'Plsar': '2145-0750', 'TOAs': 7029, 'Period Derivative': 2.97898e-20}, {'RMS': 4.36, 'DM': 13.57, 'Binary': 'Y', 'Period': 0.0079872, 'Raw Profiles': 726, 'Plsar': '1455-3330', 'TOAs': 4983, 'Period Derivative': 2.43033e-20}, {'RMS': 3.2, 'DM': 24.34, 'Binary': '-', 'Period': 0.0051852, 'Raw Profiles': 505, 'Plsar': '1944+0907', 'TOAs': 1696, 'Period Derivative': 1.73386e-20}, {'RMS': 4.6, 'DM': 164.13, 'Binary': 'Y', 'Period': 0.01313818, 'Raw Profiles': 362, 'Plsar': '1949+3106', 'TOAs': 1409, 'Period Derivative': 9.95761e-20}, {'RMS': 0.75, 'DM': 24.2, 'Binary': 'Y', 'Period': 0.00374715, 'Raw Profiles': 519, 'Plsar': '1741+1351', 'TOAs': 1588, 'Period Derivative': 3.02169e-20}, {'RMS': 0.91, 'DM': 71.02, 'Binary': '-', 'Period': 0.00155781, 'Raw Profiles': 1312, 'Plsar': '1937+21', 'TOAs': 0, 'Period Derivative': 1.051006e-19}, {'RMS': 30.96, 'DM': 104.5, 'Binary': 'Y', 'Period': 0.00613317, 'Raw Profiles': 384, 'Plsar': '1953+29', 'TOAs': 1302, 'Period Derivative': 2.96849e-20}, {'RMS': 1.66, 'DM': 22.56, 'Binary': 'Y', 'Period': 0.00311923, 'Raw Profiles': 446, 'Plsar': '2214+3000', 'TOAs': 2514, 'Period Derivative': 1.47013e-20}, {'RMS': 1.82, 'DM': 26.6, 'Binary': 'Y', 'Period': 0.00764587, 'Raw Profiles': 693, 'Plsar': '1918-0642', 'TOAs': 9664, 'Period Derivative': 2.56913e-20}, {'RMS': 1.37, 'DM': 34.48, 'Binary': 'Y', 'Period': 0.00315081, 'Raw Profiles': 433, 'Plsar': '1614-2230', 'TOAs': 7323, 'Period Derivative': 9.6242e-21}, {'RMS': 3.13, 'DM': 297.56, 'Binary': 'Y', 'Period': 0.00214991, 'Raw Profiles': 479, 'Plsar': '1903+0327', 'TOAs': 1802, 'Period Derivative': 1.88105e-20}, {'RMS': 5.14, 'DM': 49.58, 'Binary': '-', 'Period': 0.00329934, 'Raw Profiles': 215, 'Plsar': '0340+4130', 'TOAs': 3003, 'Period Derivative': 7.0774e-21}, {'RMS': 2.07, 'DM': 38.06, 'Binary': 'Y', 'Period': 0.00498358, 'Raw Profiles': 554, 'Plsar': '1910+1256', 'TOAs': 2631, 'Period Derivative': 9.6777e-21}, {'RMS': 0.85, 'DM': 21.9, 'Binary': 'Y', 'Period': 0.00344525, 'Raw Profiles': 743, 'Plsar': '2317+1439', 'TOAs': 2620, 'Period Derivative': 2.4297e-21},{'RMS': 0.85, 'DM': 21.9, 'Binary': 'Y', 'Period': 0.12321, 'Raw Profiles': 743, 'Plsar': '2317+1439', 'TOAs': 2620, 'Period Derivative':232.7e-21}];*/
 
 
 
@@ -89,30 +81,15 @@ var yaxis = d3.svg.axis()
                   .tickSize(-w);
 
 
-var zoom = d3.behavior.zoom()
-            .x(xscale)
-            .y(yscale)
-            .on("zoom", zoomed);
-
-            
 
 
-function zoomed() {
-   xaxis.scale(xscale);
-      yaxis.scale(yscale);
-
-      canvas.selectAll("g.x_axis").call(xaxis);
-      canvas.selectAll("g.y_axis").call(yaxis);
-
-      
-
-}
 
 var canvas =  d3.select("body").append("svg")
-	.attr("width",w).attr("height",h);
+	.attr("width",w).attr("height",h)
+  ;
    
 	
-
+canvas.append("g").attr("class","points")
 
 canvas.append("g")
     .attr("class", "axis x_axis") 
@@ -135,15 +112,76 @@ canvas.append("g")
 
 
 
+d3.json("data",function(data){
+  dataset = data["data"];
+  console.log(dataset);
+
+  refreshgraph(dataset);
+
+var zoom = d3.behavior.zoom()
+            .x(xscale)
+            .y(yscale)
+            .on("zoom", function(){
+              update(dataset);
+            });
+            canvas.call(zoom);
+            update(dataset);
+
+            
+});
+
+function update(dataset)
+{
+  var circle=
+
+  canvas.select('.points').selectAll('circle').data(dataset)
+    xaxis.scale(xscale);
+
+    yaxis.scale(yscale);
+
+
+
+    canvas.selectAll("g.x_axis").call(xaxis);
+    canvas.selectAll("g.y_axis").call(yaxis);
+
+    circle.attr("cx", function(d) { return xscale(d["Period"]); })
+    .attr("cy", function(d) { return yscale(Math.log10(d["Period Derivative"])) ;})
+   
+
+
+}
+function zoomed(dataset) {
+
+  console.log("in the zoom fn");
+  console.log(dataset);
+     xaxis.scale(xscale);
+
+      yaxis.scale(yscale);
+
+      canvas.selectAll("g.x_axis").call(xaxis);
+      canvas.selectAll("g.y_axis").call(yaxis);
+
+       canvas.selectAll(".points")
+    .data(dataset)
+    .enter()
+    .append("circle")
+    .attr("cx", function(d) { return xscale(d["Period"]); })
+    .attr("cy", function(d) { return yscale(Math.log10(d["Period Derivative"])) ;})
+    .attr("r", "5px")
+    .attr("fill", "black")
+    
+
+}
 
 function refreshgraph(dataset){
 
-       console.log(dataset);
+       /*console.log(dataset);*/
        
        yscale.domain([d3.min(dataset, function(d) { return Math.log10(d["Period Derivative"]); }), d3.max(dataset, function(d) { return Math.log10(d["Period Derivative"]); })])
 
      
        xscale.domain([d3.min(dataset, function(d) { return d["Period"]; }), d3.max(dataset, function(d) { return d["Period"]; })])
+
 
        /*yscale.domain([d3.min(dataset, function(d) { return Math.log10(d["Period Derivative"]); }), d3.max(dataset, function(d) { return Math.log10(d["Period Derivative"]) ;} )]);
         xscale .domain([d3.min(dataset, function(d) { return d["Period"]; }), d3.max(dataset, function(d) { return d["Period"]; })]);
@@ -154,7 +192,7 @@ function refreshgraph(dataset){
       canvas.selectAll("g.x_axis").call(xaxis);
       canvas.selectAll("g.y_axis").call(yaxis);
       
-      canvas.call(zoom);      
+    /*  canvas.call(zoom);  */    
 
     /*
     canvas.call(xaxis);
@@ -162,12 +200,14 @@ function refreshgraph(dataset){
     */
 
 
-    canvas.selectAll("circle")
-    .data(dataset)
-    .enter()
-    .append("circle")
+   var nodes = canvas.selectAll("circle")
+    .data(dataset);
 
-      .transition()
+    nodes.exit().remove();
+
+    nodes.enter()
+    .append("circle")
+    .transition()
       .delay(function(d, i) {
         return i * 100;
       })
@@ -176,13 +216,40 @@ function refreshgraph(dataset){
     .attr("cx", function(d) { return xscale(d["Period"]); })
     .attr("cy", function(d) { return yscale(Math.log10(d["Period Derivative"])) ;})
     .attr("r", "5px")
-    .attr("fill", "black")
-    
+    .attr("fill", "black");
 
+canvas.selectAll("circle").on("mouseover",handlemouseover);
+canvas.selectAll("circle").on("mouseout",handlemouseout);
+canvas.selectAll("circle").on("click",removenode);
 }
 
 
+function removenode(d){
 
+
+  console.log(d);
+}
+
+
+function handlemouseover(d,i)
+{
+  d3.select(this).attr({
+    fill:"orange",
+    r:10
+
+  });
+
+console.log(d);
+console.log(i);
+}
+function handlemouseout(d,i)
+{
+  d3.select(this).attr({
+    fill:"black",
+    r:5
+
+  });
+}
 function updateadd()
 {
 
