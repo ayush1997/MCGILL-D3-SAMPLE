@@ -54,8 +54,8 @@ console.log(data["data"]);
 var w = 600;
 var h = 600;
 var padding = 50;
-clicked = "no"
-
+var clicked = "no"
+var id = -1;
 
 
 
@@ -242,12 +242,11 @@ function refreshgraph(dataset){
       return r;
     });
     
-if(clicked=="no")
-{
+
   console.log(clicked+"starting")
 canvas.selectAll("circle").on("mouseover",handlemouseover);
 canvas.selectAll("circle").on("mouseout",handlemouseout);
-}
+
 canvas.selectAll("circle").on("click",selection);
 
 console.log(clicked);
@@ -270,21 +269,22 @@ function selection(d,i){
 /*console.log(d3.select(this).style("fill"));
 */
 /*console.log(i);*/
+
 if(clicked=="no")
 {
 d3.select(this).attr({
     fill:"black",
     r:10
 });
-  window.clicked = "yes"
-
+clicked = "yes"
+id = i
 }
 
-else{
+else if(clicked=="yes" && i==id){
 
   d3.select(this).attr({
     fill:function(d){ return setcolor(d);},
-    r:3+0.1*(i+1)
+    r: 3+0.1*(i+1)
 
   });
     clicked = "no"
