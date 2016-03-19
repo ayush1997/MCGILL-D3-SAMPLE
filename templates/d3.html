@@ -54,7 +54,7 @@ console.log(data["data"]);
 var w = 600;
 var h = 600;
 var padding = 50;
-
+clicked = "no"
 
 
 
@@ -89,7 +89,7 @@ var canvas =  d3.select("body").append("svg")
   ;
    
 	
-canvas.append("g").attr("class","points")
+
 
 canvas.append("g")
     .attr("class", "axis x_axis") 
@@ -227,7 +227,9 @@ function refreshgraph(dataset){
 
     nodes.enter()
     .append("circle")
+    .attr("fill", function(d){ return setcolor(d);})
     .transition()
+    .duration(200)
       .delay(function(d, i) {
         return i * 100;
       })
@@ -238,29 +240,72 @@ function refreshgraph(dataset){
     .attr("r", function(){
       r= r+0.1;
       return r;
-    })
-    .attr("fill", "black");
-
+    });
+    
+if(clicked=="no")
+{
+  console.log(clicked+"starting")
 canvas.selectAll("circle").on("mouseover",handlemouseover);
 canvas.selectAll("circle").on("mouseout",handlemouseout);
-canvas.selectAll("circle").on("click",removenode);
+}
+canvas.selectAll("circle").on("click",selection);
+
+console.log(clicked);
 }
 
+function setcolor(d)
+{
+/*  console.log(d["Binary"]*/
+  if(d["Binary"]=="Y")
+    {
+      return "green";
+    }
+  else{
+      return "red";
+  }
+}
 
-function removenode(d,i){
+function selection(d,i){
 
+/*console.log(d3.select(this).style("fill"));
+*/
+/*console.log(i);*/
+if(clicked=="no")
+{
+d3.select(this).attr({
+    fill:"black",
+    r:10
+});
+  window.clicked = "yes"
 
-  console.log(d);
+}
+
+else{
+
+  d3.select(this).attr({
+    fill:function(d){ return setcolor(d);},
+    r:3+0.1*(i+1)
+
+  });
+    clicked = "no"
+   
+}
+  console.log(clicked);
+}
+
+ /* console.log(d);
 $.ajax({
   url:"/delete/"+d["Pulsar"],
   contentType: "application/json"
 });
 
-}
+}*/
 
 
 function handlemouseover(d,i)
 {
+
+  if(clicked=="no"){
   d3.select(this).attr({
 
   /*  console.log(r);*/
@@ -268,40 +313,30 @@ function handlemouseover(d,i)
     r:10
 
   });
-
-console.log(d);
-console.log(i);
+  console.log(clicked);
 }
+  console.log(clicked);
+}
+
+/*console.log(d);
+console.log(i);
+}*/
+
 function handlemouseout(d,i)
 {
+
+  if(clicked=="no"){
+
   d3.select(this).attr({
-    fill:"black",
-    r:5
+    fill:function(d){ return setcolor(d);},
+      r:3+0.1*(i+1)
 
   });
+console.log(clicked);
 }
-function updateadd()
-{
-
-window.dataset.push({'RMS': 0.85, 'DM': 21.9, 'Binary': 'Y', 'Period': 0.0012321, 'Raw Profiles': 743, 'Plsar': '2317+1439', 'TOAs': 2620, 'Period Derivative': 2322.4297e-21},{'RMS': 0.85, 'DM': 21.9, 'Binary': 'Y', 'Period': 0.04525, 'Raw Profiles': 743, 'Plsar': '2317+1439', 'TOAs': 2620, 'Period Derivative': 2.4297e-100},{'RMS': 0.85, 'DM': 21.9, 'Binary': 'Y', 'Period': 0.003123215, 'Raw Profiles': 743, 'Plsar': '2317+1439', 'TOAs': 2620, 'Period Derivative': 55.97e-21},{'RMS': 0.85, 'DM': 21.9, 'Binary': 'Y', 'Period': 0.0425, 'Raw Profiles': 743, 'Plsar': '2317+1439', 'TOAs': 2620, 'Period Derivative': 2.47e-1});
-
-refreshgraph();
+  console.log(clicked);
 }
 
-
-function updateadd1()
-{
-
-dataset.push([100,0],
-                  [200,200],
-                  [300,400],
-                  [500,500],
-                  [600,600],
-                  [700,700],
-                  [800,800]);
-
-refreshgraph();
-}
 
 
 
