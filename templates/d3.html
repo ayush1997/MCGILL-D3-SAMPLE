@@ -115,14 +115,27 @@ canvas.append("g")
 d3.json("data",function(data){
   dataset = data["data"];
   console.log(dataset.length);
-
-
-for(i=0;i<dataset.length;i++)
-{
-  console.log(dataset[i]["RMS"]);
+arr=[]
+var max = dataset[0]["RMS"]; 
+for(i=0;i<dataset.length-1;i++)
+{  
+  arr.push(dataset[i]["RMS"])
 }
+arr.sort();
+console.log(arr);
 
+data_new = []
 
+for(i=0; i<arr.length;i++) {
+  for(j=0;j<dataset.length;j++){
+    if(arr[i]==dataset[j]["RMS"])
+    {
+      data_new.push(dataset[j])
+    }
+  }
+}
+console.log(data_new);
+dataset = data_new;
   refreshgraph(dataset);
 
 var zoom = d3.behavior.zoom()
