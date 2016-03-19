@@ -10,13 +10,14 @@ app= Flask(__name__)
 
 @app.route('/')
 def home():
+
 	return render_template("d3.html")
 
 
 @app.route('/data' ,methods=["GET"])
 def getdata():
 	global json_data
-
+	print len(json_data)
 	return jsonify({"data":json_data})
 
 
@@ -33,8 +34,25 @@ def add():
 		return redirect('/')
 	else:
 		print "error"
+@app.route('/delete/<name>',methods=["GET","POST"])
+def delete(name):
+	global json_data
+	
 
-print json_data
+	print len(json_data)
+	if request.method == 'GET':
+		for i in json_data:
+			if i["Pulsar"]==name:
+				print i["Pulsar"]
+				json_data.remove(i)
+				break
+
+		
+	print len(json_data)
+		# for i in json_data:
+		# 	if i["Pulsar"]==
+	return redirect('/')
+
 
 if __name__ == '__main__':
 	global json_data
