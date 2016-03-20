@@ -1,4 +1,15 @@
 
+
+.graph_box{
+
+	padding-top:40px ;
+	padding-bottom: 20px;
+}
+
+
+
+
+
 .axis path,
     .axis line {
         fill: none;
@@ -15,10 +26,26 @@
       padding:;
     }
 */
+
+.info_box{
+
+
+	height:600px;
+	padding:40px 20px 20px 20px;
+	/*background-color: green;*/
+}
+
+.common_box{
+	height: 100%;
+	width: 100%;
+	padding:15px 15px;
+	/*background-color: red;*/
+
+}
 .data{
 	
 	padding:10px 10px;
-	border:2px solid black;
+	/*border:2px solid black;*/
 	
 
 
@@ -26,42 +53,48 @@
 
 .info_text{
 
-padding:3px 3px;
+padding:5px 15px 15px 10px;
 	font-size:18px;
 
 }
 .info_data{
 
-	padding:3px 3px;
+	padding:5px 10px 10px 10px;
 	font-size:18px;
-}
 
-
-.add{
-
-		margin-top:10px;
 }
 
 .data_add{
 	
+	width:100%;
+
 	padding:10px 10px;
-	border:2px solid black;
+	/*border:2px solid black;*/
 	display: none;
 
 
 
 }
-.btn-default{
 
-	/*margin-top:10px;
-	margin-left:10px;*/
-	margin:10px auto;
+.add{
+
+		padding:5px 10px 10px 10px;
 }
 
+
+/*.btn-default{
+
+	margin-top:10px;
+	margin-left:10px;
+	margin:10px auto;
+}
+*/
 .data_delete{
 	
+	width:100%;
+
 	padding:10px 10px;
-	border:2px solid black;
+/*	border:2px solid black;*/
 	display: none;
 }
 
