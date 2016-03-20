@@ -162,12 +162,12 @@
 
                
               </div>
-               <div class="btn-group btn-group-justified" role="group" >
+               <div class="btn-group btn-group-justified menu" role="group" >
                       <div class="btn-group" role="group">
                          <button type="button" class="btn btn-default  databut">DATA</button>
                       </div>
                       <div class="btn-group" role="group">
-                        <button type="button" class="btn  btn-success add">ADD</button>
+                        <button type="button" class="btn  btn-success add_data">ADD</button>
                       </div>
                       <div class="btn-group" role="group">
                         <button type="button" class="btn btn-danger del special">DELETE</button>
@@ -196,7 +196,7 @@
 
    
 
-  <!--   <form action="/add/" method='post'>
+  <! <form action="/add/" method='post'>
         x
         <input type="text" name="Period">
         <br> y
@@ -255,13 +255,13 @@
     var xaxis = d3.svg.axis()
         .scale(xscale)
         .orient("bottom")
-        .ticks(5)
+        .ticks(10)
         .tickSize(padding - h);
 
     var yaxis = d3.svg.axis()
         .scale(yscale)
         .orient("left")
-        .ticks(5)
+        .ticks(20)
         .tickSize(-w);
 
 

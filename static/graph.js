@@ -6,7 +6,7 @@ $(document).ready(function(){
 		$('.data_delete').hide();
 
 	});
-	$(document).on('click',".add",function(){
+	$(document).on('click',".add_data",function(){
 		$('.data').hide();
 		$('.data_add').show();
 		$('.data_delete').hide();
