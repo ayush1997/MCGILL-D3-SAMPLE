@@ -293,6 +293,14 @@
             });
             clicked = "yes"
             id = i
+             $(".pulsar").val(d["Pulsar"]);
+            $(".rms").val(d["RMS"]);
+            $(".dm").val(d["DM"]);
+            $(".binary").val(d["Binary"]);
+            $(".period").val(d["Period"]);
+            $(".periodder").val(d["Period Derivative"]);
+            $(".rawprof").val(d["Raw Profiles"]);
+            $(".toas").val(d["TOAs"]);
         } else if (clicked == "yes" && i == id) {
 
             d3.select(this).attr({
@@ -303,7 +311,14 @@
 
             });
             clicked = "no"
-
+             $(".pulsar").val(" ");
+            $(".rms").val(" ");
+            $(".dm").val(" ");
+            $(".binary").val(" ");
+            $(".period").val(" ");
+            $(".periodder").val(" ");
+            $(".rawprof").val(" ");
+            $(".toas").val(" ");
         }
         console.log(clicked);
     }
@@ -338,6 +353,15 @@ $.ajax({
             $(".rawprof").html(d["Raw Profiles"]);
             $(".toas").html(d["TOAs"]);
 
+             $(".pulsar").val(d["Pulsar"]);
+            $(".rms").val(d["RMS"]);
+            $(".dm").val(d["DM"]);
+            $(".binary").val(d["Binary"]);
+            $(".period").val(d["Period"]);
+            $(".periodder").val(d["Period Derivative"]);
+            $(".rawprof").val(d["Raw Profiles"]);
+            $(".toas").val(d["TOAs"]);
+
         }
         console.log(clicked);
     
@@ -370,6 +394,16 @@ $.ajax({
             $(".periodder").html(" ");
             $(".rawprof").html(" ");
             $(".toas").html(" ");
+
+               $(".pulsar").val(" ");
+            $(".rms").val(" ");
+            $(".dm").val(" ");
+            $(".binary").val(" ");
+            $(".period").val(" ");
+            $(".periodder").val(" ");
+            $(".rawprof").val(" ");
+            $(".toas").val(" ");
+
         }
         console.log(clicked);
     }
@@ -460,9 +494,66 @@ $.ajax({
                     </form>
                     </div>
                 </div>
+
+
+                 <div class="col-lg-10 col-sm-10 col-xs-10 col-md-10 ">
+                <div class="data_delete">
+                    <form action="/delete/" method='post'>
+                     
+                           
+                           <p>FILL IT OR SELECT THE NODE</p>
+                            <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">Pulsar</span>
+                            <input type="text" class="form-control pulsar" placeholder="Pulsar Name" name="Pulsar">
+                          </div>
+                             <div class="input-group add">
+                            <span class="input-group-addon" id="basic-addon1">TOAs</span>
+                            <input type="text" class="form-control toas" placeholder="TOAs" name="TOAs">
+                          </div>
+                           <div class="input-group add">
+                            <span class="input-group-addon" id="basic-addon1">Raw Profiles</span>
+                            <input type="text" class="form-control rawprof" placeholder="Username" name="Raw Profiles">
+                          </div>
+                            <div class="input-group add">
+                                <span class="input-group-addon">Period</span>
+                                <input type="text" class="form-control period" name="Period">
+                                <span class="input-group-addon">s</span>
+                            </div>
+                            <div class="input-group add">
+                                <span class="input-group-addon">Period Derivative</span>
+                                <input type="text" class="form-control pd periodder"name="Period Derivative">
+                                <span class="input-group-addon">s/s</span>
+                            </div>
+                             <div class="input-group add">
+                                <span class="input-group-addon">DM</span>
+                                <input type="text" class="form-control p dm" name="DM">
+                                <span class="input-group-addon">pc/cc</span>
+                            </div>
+                            <div class="input-group add">
+                                <span class="input-group-addon">RMS</span>
+                                <input type="text" class="form-control rms" name="RMS">
+                                <span class="input-group-addon">us</span>
+                            </div>
+                              <div class="input-group add">
+                            <span class="input-group-addon" id="basic-addon1">Binary</span>
+                            <input type="text" class="form-control binary" placeholder="Username" name="Binary">
+                          </div>  
+                          <center><input class="btn btn-default btn-lg active" type="submit" value="DELETE"> </center>         
+                    </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+   
+
     <form action="/add/" method='post'>
         x
         <input type="text" name="Period">

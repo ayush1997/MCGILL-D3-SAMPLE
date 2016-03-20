@@ -40,15 +40,20 @@ def add():
 		return redirect('/')
 	else:
 		return "error"
-@app.route('/delete/<name>',methods=["GET","POST"])
-def delete(name):
+@app.route('/delete/',methods=["GET","POST"])
+def delete():
 	global json_data
 	
 
 	print len(json_data)
-	if request.method == 'GET':
+	if request.method == 'POST':
+		name = request.form["Pulsar"]
+		print name
+		Period = request.form["Period"]
+		period_der = request.form["Period Derivative"]
+
 		for i in json_data:
-			if i["Pulsar"]==name:
+			if i["Pulsar"]==name or(i["Period"]==Period and i["Period Derivative"]==period_der):
 				print i["Pulsar"]
 				json_data.remove(i)
 				break
