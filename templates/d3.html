@@ -29,6 +29,35 @@
 <div class="container-fluid">
     <div class="row">
         
+          <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Brand</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    
+      
+      <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
 
           <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8 graph_box ">
             <div class="graph" ></div>
@@ -164,7 +193,7 @@
               </div>
                <div class="btn-group btn-group-justified menu" role="group" >
                       <div class="btn-group" role="group">
-                         <button type="button" class="btn btn-default  databut">DATA</button>
+                         <button type="button" class="btn btn-primary  databut">DATA</button>
                       </div>
                       <div class="btn-group" role="group">
                         <button type="button" class="btn  btn-success add_data">ADD</button>
@@ -176,7 +205,7 @@
                          <a href='/reset/'><button type="button" class="btn btn-default">ORIGINAL</button></a>
                       </div>
                       <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default">ABOUT IT</button>
+                        <button type="button" class="btn btn-info">ABOUT IT</button>
                       </div>
             </div>
           </div>
@@ -248,7 +277,7 @@
     .range([h - padding, padding]);
 
 
-    var xscale = d3.scale.log()
+    var xscale = d3.scale.linear()
 
     .range([padding, w - padding]);
 
@@ -434,11 +463,11 @@
                 return setcolor(d);
             })
             .transition()
-            .duration(200)
+            .duration(100)
             .delay(function(d, i) {
                 return i * 100;
             })
-            .duration(3000)
+            
 
         .attr("cx", function(d) {
                 return xscale(d["Period"]);
