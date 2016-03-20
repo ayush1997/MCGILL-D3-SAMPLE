@@ -26,14 +26,20 @@ def add():
 	global json_data
 	json_add={}
 	if request.method == 'POST':
-		json_add["Period Derivative"] = request.form['y']
-		json_add["Period"] = request.form['x']
+		json_add["Period Derivative"] = request.form['Period Derivative']
+		json_add["Period"] = request.form['Period']
+		json_add["TOAs"] = request.form['TOAs']
+		json_add["Raw Profiles"] = request.form['Raw Profiles']
+		json_add["Pulsar"] = request.form['Pulsar']
+		json_add["RMS"] = request.form['RMS']
+		json_add["Binary"] = request.form['Binary']
+		json_add["DM"] = request.form['DM']
 		json_data.append(json_add)
 		print json_add
 		print json_data
 		return redirect('/')
 	else:
-		print "error"
+		return "error"
 @app.route('/delete/<name>',methods=["GET","POST"])
 def delete(name):
 	global json_data

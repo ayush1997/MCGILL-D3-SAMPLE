@@ -108,8 +108,9 @@
         console.log(dataset.length);
         arr = []
         var max = dataset[0]["RMS"];
-        for (i = 0; i < dataset.length - 1; i++) {
+        for (i = 0; i < dataset.length; i++) {
             arr.push(dataset[i]["RMS"])
+          
         }
         arr.sort();
         console.log(arr);
@@ -350,6 +351,18 @@ $.ajax({
         }
         console.log(clicked);
     }
+
+$(document).ready(function(){
+if($(".pd").val() !="")
+{
+    /*$("input .ok").removeClass("disabled").addClass("active");*/
+    console.log("dasdsad");
+}
+
+
+});
+
+
     </script>
 
 
@@ -388,48 +401,50 @@ $.ajax({
 
 
                 <div class="col-lg-10 col-sm-10 col-xs-10 col-md-10 ">
-                    <form method="post">
+                <div class="data_add">
+                    <form action="/add/" method='post'>
                      
                            
                            
                             <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Pulsar</span>
-                            <input type="text" class="form-control" placeholder="Pulsar Name">
+                            <input type="text" class="form-control" placeholder="Pulsar Name" name="Pulsar">
                           </div>
                              <div class="input-group add">
                             <span class="input-group-addon" id="basic-addon1">TOAs</span>
-                            <input type="text" class="form-control" placeholder="TOAs" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control" placeholder="TOAs" name="TOAs">
                           </div>
                            <div class="input-group add">
                             <span class="input-group-addon" id="basic-addon1">Raw Profiles</span>
-                            <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control" placeholder="Username" name="Raw Profiles">
                           </div>
                             <div class="input-group add">
                                 <span class="input-group-addon">Period</span>
-                                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                <input type="text" class="form-control" name="Period">
                                 <span class="input-group-addon">s</span>
                             </div>
                             <div class="input-group add">
                                 <span class="input-group-addon">Period Derivative</span>
-                                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                <input type="text" class="form-control pd"name="Period Derivative">
                                 <span class="input-group-addon">s/s</span>
                             </div>
                              <div class="input-group add">
                                 <span class="input-group-addon">DM</span>
-                                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                <input type="text" class="form-control p" name="DM">
                                 <span class="input-group-addon">pc/cc</span>
                             </div>
                             <div class="input-group add">
                                 <span class="input-group-addon">RMS</span>
-                                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                <input type="text" class="form-control" name="RMS">
                                 <span class="input-group-addon">us</span>
                             </div>
                               <div class="input-group add">
                             <span class="input-group-addon" id="basic-addon1">Binary</span>
-                            <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control" placeholder="Username" name="Binary">
                           </div>  
-                                       
+                          <center><input class="btn btn-default btn-lg active" type="submit" value="ADD"> </center>         
                     </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -446,3 +461,8 @@ $.ajax({
 </body>
 
 </html>
+
+
+
+
+
