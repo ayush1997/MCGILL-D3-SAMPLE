@@ -1,0 +1,43 @@
+
+.axis path,
+    .axis line {
+        fill: none;
+        stroke: black;
+        shape-rendering: crispEdges;
+    }
+    
+    .axis text {
+        font-family: sans-serif;
+        font-size: 11px;
+    }
+
+    .input-group{
+      padding:;
+    }
+
+.data{
+	
+	padding:10px 10px;
+	border:2px solid black;
+	display: none;
+
+
+}
+
+.info_text{
+
+padding:3px 3px;
+	font-size:18px;
+
+}
+.info_data{
+
+	padding:3px 3px;
+	font-size:18px;
+}
+
+
+.add{
+
+		margin-top:10px;
+}

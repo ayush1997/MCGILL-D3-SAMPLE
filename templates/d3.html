@@ -1,299 +1,313 @@
 <html>
 
 <head>
-
-<!-- jquery -->
+    <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <!-- d3.js -->
     <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-<title>d3</title>
-<style >
-	
-.axis path,
-.axis line {
-    fill: none;
-    stroke: black;
-    shape-rendering: crispEdges;
-}
+     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='graph.css') }}">
 
-.axis text {
-    font-family: sans-serif;
-    font-size: 11px;
-}
-
-
-</style>
+    <title>d3</title>
 
 
 
 </head>
+
 <body>
-<script >
-/*
-$.ajax({
-
-  url:"/data",
-
-  contentType:"application/json"
-}).done(function(data){
-
-console.log(data);
-console.log(data["data"]);
-
-
-
-});
-*/
-
-
-
-
-
-
-var w = 600;
-var h = 600;
-var padding = 50;
-var clicked = "no"
-var id = -1;
-
-
-
-var yscale = d3.scale.linear()
-			
-          .range([h-padding,padding]);
-
-
-var xscale = d3.scale.log()
-    
-                     .range([padding, w-padding]);
-
-var xaxis = d3.svg.axis()
-			.scale(xscale)
-			.orient("bottom")
-			.ticks(5)
-      .tickSize(padding-h);
-
-var yaxis = d3.svg.axis()
-                  .scale(yscale)
-                  .orient("left")
-                  .ticks(5)
-                  .tickSize(-w);
-
-
-
-
-
-var canvas =  d3.select("body").append("svg")
-	.attr("width",w).attr("height",h)
-  ;
-   
-	
-
-
-canvas.append("g")
-    .attr("class", "axis x_axis") 
-     .attr("transform", "translate(0," + (h - padding) + ")")//Assign "axis" class
-    .call(xaxis);
-
-
-canvas.append("g")
-    .attr("class", "axis y_axis")
-    .attr("transform", "translate(" + padding + ",0)")
-    .call(yaxis);
-
-
-/*periods_der = []
- for (i = 0; i < dataset.length; i++) {
-        periods_der.push(Math.log10(dataset[i]['x']))
-    }
-
-    console.log(periods_der);*/
-
-
-
-d3.json("data",function(data){
-  dataset = data["data"];
-  console.log(dataset.length);
-arr=[]
-var max = dataset[0]["RMS"]; 
-for(i=0;i<dataset.length-1;i++)
-{  
-  arr.push(dataset[i]["RMS"])
-}
-arr.sort();
-console.log(arr);
-
-data_new = []
-
-for(i=0; i<arr.length;i++) {
-  for(j=0;j<dataset.length;j++){
-    if(arr[i]==dataset[j]["RMS"])
-    {
-      data_new.push(dataset[j])
-    }
-  }
-}
-console.log(data_new);
-dataset = data_new;
-  refreshgraph(dataset);
-
-var zoom = d3.behavior.zoom()
-            .x(xscale)
-            .y(yscale)
-            .on("zoom", function(){
-              update(dataset);
-            });
-            canvas.call(zoom);
-            update(dataset);
-
-            
-});
-
-function update(dataset)
-{
-  var circle=
-
-  canvas.selectAll('circle').data(dataset)
-    xaxis.scale(xscale);
-
-    yaxis.scale(yscale);
-
-
-
-    canvas.selectAll("g.x_axis").call(xaxis);
-    canvas.selectAll("g.y_axis").call(yaxis);
-
-    circle.attr("cx", function(d) { return xscale(d["Period"]); })
-    .attr("cy", function(d) { return yscale(Math.log10(d["Period Derivative"])) ;})
-   
-
-
-}
-/*function zoomed(dataset) {
-
-  console.log("in the zoom fn");
-  console.log(dataset);
-     xaxis.scale(xscale);
-
-      yaxis.scale(yscale);
-
-      canvas.selectAll("g.x_axis").call(xaxis);
-      canvas.selectAll("g.y_axis").call(yaxis);
-
-       canvas.selectAll(".points")
-    .data(dataset)
-    .enter()
-    .append("circle")
-    .attr("cx", function(d) { return xscale(d["Period"]); })
-    .attr("cy", function(d) { return yscale(Math.log10(d["Period Derivative"])) ;})
-    .attr("r", "5px")
-    .attr("fill", "black")
-    
-
-}*/
-
-function refreshgraph(dataset){
-
-       /*console.log(dataset);*/
-       
-       yscale.domain([d3.min(dataset, function(d) { return Math.log10(d["Period Derivative"]); }), d3.max(dataset, function(d) { return Math.log10(d["Period Derivative"]); })])
-
-     
-       xscale.domain([d3.min(dataset, function(d) { return d["Period"]; }), d3.max(dataset, function(d) { return d["Period"]; })])
-
-
-       /*yscale.domain([d3.min(dataset, function(d) { return Math.log10(d["Period Derivative"]); }), d3.max(dataset, function(d) { return Math.log10(d["Period Derivative"]) ;} )]);
-        xscale .domain([d3.min(dataset, function(d) { return d["Period"]; }), d3.max(dataset, function(d) { return d["Period"]; })]);
-*/
-      xaxis.scale(xscale);
-      yaxis.scale(yscale);
-
-      canvas.selectAll("g.x_axis").call(xaxis);
-      canvas.selectAll("g.y_axis").call(yaxis);
-      
-    /*  canvas.call(zoom);  */    
-
+    <script>
     /*
-    canvas.call(xaxis);
-    canvas.call(yaxis);
+    $.ajax({
+
+      url:"/data",
+
+      contentType:"application/json"
+    }).done(function(data){
+
+    console.log(data);
+    console.log(data["data"]);
+
+
+
+    });
     */
 
-    var r= 3;
-   var nodes = canvas.selectAll("circle")
-    .data(dataset);
 
-    nodes.exit().remove();
 
-    nodes.enter()
-    .append("circle")
-    .attr("fill", function(d){ return setcolor(d);})
-    .transition()
-    .duration(200)
-      .delay(function(d, i) {
-        return i * 100;
-      })
-      .duration(3000)
-     
-    .attr("cx", function(d) { return xscale(d["Period"]); })
-    .attr("cy", function(d) { return yscale(Math.log10(d["Period Derivative"])) ;})
-    .attr("r", function(){
-      r= r+0.1;
-      return r;
+
+
+
+    var w = 800;
+    var h = 600;
+    var padding = 50;
+    var clicked = "no"
+    var id = -1;
+
+
+
+    var yscale = d3.scale.linear()
+
+    .range([h - padding, padding]);
+
+
+    var xscale = d3.scale.log()
+
+    .range([padding, w - padding]);
+
+    var xaxis = d3.svg.axis()
+        .scale(xscale)
+        .orient("bottom")
+        .ticks(5)
+        .tickSize(padding - h);
+
+    var yaxis = d3.svg.axis()
+        .scale(yscale)
+        .orient("left")
+        .ticks(5)
+        .tickSize(-w);
+
+
+
+
+
+    var canvas = d3.select("body").append("svg")
+        .attr("width", w).attr("height", h);
+
+
+
+
+    canvas.append("g")
+        .attr("class", "axis x_axis")
+        .attr("transform", "translate(0," + (h - padding) + ")") //Assign "axis" class
+        .call(xaxis);
+
+
+    canvas.append("g")
+        .attr("class", "axis y_axis")
+        .attr("transform", "translate(" + padding + ",0)")
+        .call(yaxis);
+
+
+    /*periods_der = []
+     for (i = 0; i < dataset.length; i++) {
+            periods_der.push(Math.log10(dataset[i]['x']))
+        }
+
+        console.log(periods_der);*/
+
+
+
+    d3.json("data", function(data) {
+        dataset = data["data"];
+        console.log(dataset.length);
+        arr = []
+        var max = dataset[0]["RMS"];
+        for (i = 0; i < dataset.length - 1; i++) {
+            arr.push(dataset[i]["RMS"])
+        }
+        arr.sort();
+        console.log(arr);
+
+        data_new = []
+
+        for (i = 0; i < arr.length; i++) {
+            for (j = 0; j < dataset.length; j++) {
+                if (arr[i] == dataset[j]["RMS"]) {
+                    data_new.push(dataset[j])
+                }
+            }
+        }
+        console.log(data_new);
+        dataset = data_new;
+        refreshgraph(dataset);
+
+        var zoom = d3.behavior.zoom()
+            .x(xscale)
+            .y(yscale)
+            .on("zoom", function() {
+                update(dataset);
+            });
+        canvas.call(zoom);
+        update(dataset);
+
+
     });
-    
 
-  console.log(clicked+"starting")
-canvas.selectAll("circle").on("mouseover",handlemouseover);
-canvas.selectAll("circle").on("mouseout",handlemouseout);
+    function update(dataset) {
+        var circle =
 
-canvas.selectAll("circle").on("click",selection);
+            canvas.selectAll('circle').data(dataset)
+        xaxis.scale(xscale);
 
-console.log(clicked);
-}
+        yaxis.scale(yscale);
 
-function setcolor(d)
-{
-/*  console.log(d["Binary"]*/
-  if(d["Binary"]=="Y")
-    {
-      return "green";
+
+
+        canvas.selectAll("g.x_axis").call(xaxis);
+        canvas.selectAll("g.y_axis").call(yaxis);
+
+        circle.attr("cx", function(d) {
+                return xscale(d["Period"]);
+            })
+            .attr("cy", function(d) {
+                return yscale(Math.log10(d["Period Derivative"]));
+            })
+
+
+
     }
-  else{
-      return "red";
-  }
-}
+    /*function zoomed(dataset) {
 
-function selection(d,i){
+      console.log("in the zoom fn");
+      console.log(dataset);
+         xaxis.scale(xscale);
 
-/*console.log(d3.select(this).style("fill"));
+          yaxis.scale(yscale);
+
+          canvas.selectAll("g.x_axis").call(xaxis);
+          canvas.selectAll("g.y_axis").call(yaxis);
+
+           canvas.selectAll(".points")
+        .data(dataset)
+        .enter()
+        .append("circle")
+        .attr("cx", function(d) { return xscale(d["Period"]); })
+        .attr("cy", function(d) { return yscale(Math.log10(d["Period Derivative"])) ;})
+        .attr("r", "5px")
+        .attr("fill", "black")
+        
+
+    }*/
+
+    function refreshgraph(dataset) {
+
+        /*console.log(dataset);*/
+
+        yscale.domain([d3.min(dataset, function(d) {
+            return Math.log10(d["Period Derivative"]);
+        }), d3.max(dataset, function(d) {
+            return Math.log10(d["Period Derivative"]);
+        })])
+
+
+        xscale.domain([d3.min(dataset, function(d) {
+            return d["Period"];
+        }), d3.max(dataset, function(d) {
+            return d["Period"];
+        })])
+
+
+        /*yscale.domain([d3.min(dataset, function(d) { return Math.log10(d["Period Derivative"]); }), d3.max(dataset, function(d) { return Math.log10(d["Period Derivative"]) ;} )]);
+        xscale .domain([d3.min(dataset, function(d) { return d["Period"]; }), d3.max(dataset, function(d) { return d["Period"]; })]);
 */
-/*console.log(i);*/
+        xaxis.scale(xscale);
+        yaxis.scale(yscale);
 
-if(clicked=="no")
-{
-d3.select(this).attr({
-    fill:"black",
-    r:10
-});
-clicked = "yes"
-id = i
-}
+        canvas.selectAll("g.x_axis").call(xaxis);
+        canvas.selectAll("g.y_axis").call(yaxis);
 
-else if(clicked=="yes" && i==id){
+        /*  canvas.call(zoom);  */
 
-  d3.select(this).attr({
-    fill:function(d){ return setcolor(d);},
-    r: 3+0.1*(i+1)
+        /*
+        canvas.call(xaxis);
+        canvas.call(yaxis);
+        */
+        canvas.on("click", function() {
+            var coor = d3.mouse(this);
+            console.log(xscale.invert(coor[0]) + "  " + yscale.invert(coor[1]));
+            dataset.push({
+                "Period": xscale.invert(coor[0]),
+                "periods_der": yscale.invert(coor[1])
+            });
+            console.log(dataset)
 
-  });
-    clicked = "no"
-   
-}
-  console.log(clicked);
-}
+        })
 
- /* console.log(d);
+        var r = 3;
+        var nodes = canvas.selectAll("circle")
+            .data(dataset);
+
+        nodes.exit().remove();
+
+        nodes.enter()
+            .append("circle")
+            .attr("fill", function(d) {
+                return setcolor(d);
+            })
+            .transition()
+            .duration(200)
+            .delay(function(d, i) {
+                return i * 100;
+            })
+            .duration(3000)
+
+        .attr("cx", function(d) {
+                return xscale(d["Period"]);
+            })
+            .attr("cy", function(d) {
+                return yscale(Math.log10(d["Period Derivative"]));
+            })
+            .attr("r", function() {
+                r = r + 0.1;
+                return r;
+            });
+
+
+        console.log(clicked + "starting")
+
+
+        canvas.selectAll("circle").on("mouseover", handlemouseover);
+        canvas.selectAll("circle").on("mouseout", handlemouseout);
+
+        canvas.selectAll("circle").on("click", selection);
+
+        console.log(clicked);
+    }
+
+    function setcolor(d) {
+        /*  console.log(d["Binary"]*/
+        if (d["Binary"] == "Y") {
+            return "green";
+        } else {
+            return "red";
+        }
+    }
+
+    function selection(d, i) {
+
+        /*console.log(d3.select(this).style("fill"));
+         */
+        /*console.log(i);*/
+
+        if (clicked == "no") {
+            d3.select(this).attr({
+                fill: "black",
+                r: 10
+            });
+            clicked = "yes"
+            id = i
+        } else if (clicked == "yes" && i == id) {
+
+            d3.select(this).attr({
+                fill: function(d) {
+                    return setcolor(d);
+                },
+                r: 3 + 0.1 * (i + 1)
+
+            });
+            clicked = "no"
+
+        }
+        console.log(clicked);
+    }
+
+    /* console.log(d);
 $.ajax({
   url:"/delete/"+d["Pulsar"],
   contentType: "application/json"
@@ -302,63 +316,133 @@ $.ajax({
 }*/
 
 
-function handlemouseover(d,i)
-{
+    function handlemouseover(d, i) {
 
-  if(clicked=="no"){
-  d3.select(this).attr({
+        if (clicked == "no") {
+            d3.select(this).attr({
 
-  /*  console.log(r);*/
-    fill:"orange",
-    r:10
+                /*  console.log(r);*/
+                fill: "orange",
+                r: 10
 
-  });
-  console.log(clicked);
-}
-  console.log(clicked);
-}
+            });
+            console.log(clicked);
+        }
+        console.log(clicked);
+    }
 
-/*console.log(d);
-console.log(i);
-}*/
+    /*console.log(d);
+    console.log(i);
+    }*/
 
-function handlemouseout(d,i)
-{
+    function handlemouseout(d, i) {
 
-  if(clicked=="no"){
+        if (clicked == "no") {
 
-  d3.select(this).attr({
-    fill:function(d){ return setcolor(d);},
-      r:3+0.1*(i+1)
+            d3.select(this).attr({
+                fill: function(d) {
+                    return setcolor(d);
+                },
+                r: 3 + 0.1 * (i + 1)
 
-  });
-console.log(clicked);
-}
-  console.log(clicked);
-}
-
-
-
+            });
+            console.log(clicked);
+        }
+        console.log(clicked);
+    }
+    </script>
 
 
-</script>
 
 
-<form action="/add/" method='post'>
-  x <input type="text" name="x"><br>
-  y<input type="text" name="y"><br>
-  <input type="submit" value="Submit">
-</form>
-<button style="height:20px,width:20px" onclick="updateadd1()">click</button>
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12 ">
+            <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6 ">
+                <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2  buttons">
+                    <div class="btn-group-vertical" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default">DATA</button>
+                        <button type="button" class="btn btn-default">ADD</button>
+                        <button type="button" class="btn btn-default">DELETE</button>
+                        <button type="button" class="btn btn-default">ORIGINAL</button>
+                    </div>
+                </div>
 
 
+                <div class="col-lg-10 col-sm-10 col-xs-10 col-md-10">
+                  <div class="data">
+                      <p class="info_text">Pulsar Name:<span class="info_data">erfe</span></p>
+                        <p class="info_text">RMS:<span class="info_data"></span></p>
+                         <p class="info_text">DM:<span class="info_data"></span></p>
+                          <p class="info_text">BINARY:<span class="info_data"></span></p>
+                           <p class="info_text">PERIOD:<span class="info_data"></span></p>
+                            <p class="info_text">PERIOD DERIVATIVE:<span class="info_data"></span></p>
+                             <p class="info_text">RAW PROFILE:<span class="info_data"></span></p>
+                              <p class="info_text">TOAS:<span class="info_data"></span></p>
+
+
+                  </div>
+
+
+                </div>
+                
+
+
+                <div class="col-lg-10 col-sm-10 col-xs-10 col-md-10 ">
+                    <form method="post">
+                     
+                           
+                           
+                            <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">Pulsar</span>
+                            <input type="text" class="form-control" placeholder="Pulsar Name">
+                          </div>
+                             <div class="input-group add">
+                            <span class="input-group-addon" id="basic-addon1">TOAs</span>
+                            <input type="text" class="form-control" placeholder="TOAs" aria-describedby="basic-addon1">
+                          </div>
+                           <div class="input-group add">
+                            <span class="input-group-addon" id="basic-addon1">Raw Profiles</span>
+                            <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+                          </div>
+                            <div class="input-group add">
+                                <span class="input-group-addon">Period</span>
+                                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                <span class="input-group-addon">s</span>
+                            </div>
+                            <div class="input-group add">
+                                <span class="input-group-addon">Period Derivative</span>
+                                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                <span class="input-group-addon">s/s</span>
+                            </div>
+                             <div class="input-group add">
+                                <span class="input-group-addon">DM</span>
+                                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                <span class="input-group-addon">pc/cc</span>
+                            </div>
+                            <div class="input-group add">
+                                <span class="input-group-addon">RMS</span>
+                                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                <span class="input-group-addon">us</span>
+                            </div>
+                              <div class="input-group add">
+                            <span class="input-group-addon" id="basic-addon1">Binary</span>
+                            <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+                          </div>  
+                                       
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form action="/add/" method='post'>
+        x
+        <input type="text" name="x">
+        <br> y
+        <input type="text" name="y">
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+    <button style="height:20px,width:20px" onclick="updateadd1()">click</button>
 </body>
-
-
-
-
-
-
-
 
 </html>
