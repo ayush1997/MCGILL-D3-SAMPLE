@@ -110,7 +110,7 @@
         var max = dataset[0]["RMS"];
         for (i = 0; i < dataset.length; i++) {
             arr.push(dataset[i]["RMS"])
-          console.log(dataset[i]["RMS"]);
+         /* console.log(dataset[i]["RMS"]);*/
         }
         arr.sort();
         console.log(arr);
@@ -327,9 +327,23 @@ $.ajax({
                 r: 10
 
             });
-            console.log(clicked);
+            console.log(d["RMS"]);
+
+            $(".pulsar").html(d["Pulsar"]);
+            $(".rms").html(d["RMS"]);
+            $(".dm").html(d["DM"]);
+            $(".binary").html(d["Binary"]);
+            $(".period").html(d["Period"]);
+            $(".periodder").html(d["Period Derivative"]);
+            $(".rawprof").html(d["Raw Profiles"]);
+            $(".toas").html(d["TOAs"]);
+
         }
         console.log(clicked);
+    
+        
+
+
     }
 
     /*console.log(d);
@@ -348,19 +362,19 @@ $.ajax({
 
             });
             console.log(clicked);
+             $(".pulsar").html(" ");
+            $(".rms").html(" ");
+            $(".dm").html(" ");
+            $(".binary").html(" ");
+            $(".period").html(" ");
+            $(".periodder").html(" ");
+            $(".rawprof").html(" ");
+            $(".toas").html(" ");
         }
         console.log(clicked);
     }
 
-$(document).ready(function(){
-if($(".pd").val() !="")
-{
-    /*$("input .ok").removeClass("disabled").addClass("active");*/
-    console.log("dasdsad");
-}
 
-
-});
 
 
     </script>
@@ -383,14 +397,14 @@ if($(".pd").val() !="")
 
                 <div class="col-lg-10 col-sm-10 col-xs-10 col-md-10">
                   <div class="data">
-                      <p class="info_text">Pulsar Name:<span class="info_data">erfe</span></p>
-                        <p class="info_text">RMS:<span class="info_data"></span></p>
-                         <p class="info_text">DM:<span class="info_data"></span></p>
-                          <p class="info_text">BINARY:<span class="info_data"></span></p>
-                           <p class="info_text">PERIOD:<span class="info_data"></span></p>
-                            <p class="info_text">PERIOD DERIVATIVE:<span class="info_data"></span></p>
-                             <p class="info_text">RAW PROFILE:<span class="info_data"></span></p>
-                              <p class="info_text">TOAS:<span class="info_data"></span></p>
+                      <p class="info_text">Pulsar Name:<span class="info_data pulsar"></span></p>
+                      <p class="info_text">RMS:<span class="info_data rms"></span></p>
+                      <p class="info_text">DM:<span class="info_data dm"></span></p>
+                      <p class="info_text">BINARY:<span class="info_data binary"></span></p>
+                      <p class="info_text">PERIOD:<span class="info_data period"></span></p>
+                      <p class="info_text">PERIOD DERIVATIVE:<span class="info_data periodder"></span></p>
+                      <p class="info_text">RAW PROFILE:<span class="info_data rawprof"></span></p>
+                      <p class="info_text">TOAS:<span class="info_data toas"></span></p>
 
 
                   </div>
@@ -459,6 +473,19 @@ if($(".pd").val() !="")
     </form>
     <button style="height:20px,width:20px" onclick="updateadd1()">click</button>
 </body>
+
+
+<script>
+
+if($(".pd").val() !="")
+{
+    /*$("input .ok").removeClass("disabled").addClass("active");*/
+    console.log("dasdsad");
+}
+
+
+</script>
+
 
 </html>
 
