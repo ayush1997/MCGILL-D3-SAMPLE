@@ -110,7 +110,7 @@
         var max = dataset[0]["RMS"];
         for (i = 0; i < dataset.length; i++) {
             arr.push(dataset[i]["RMS"])
-          
+          console.log(dataset[i]["RMS"]);
         }
         arr.sort();
         console.log(arr);
@@ -451,9 +451,9 @@ if($(".pd").val() !="")
     </div>
     <form action="/add/" method='post'>
         x
-        <input type="text" name="x">
+        <input type="text" name="Period">
         <br> y
-        <input type="text" name="y">
+        <input type="text" name="Period Derivative">
         <br>
         <input type="submit" value="Submit">
     </form>
