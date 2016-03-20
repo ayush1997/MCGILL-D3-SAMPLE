@@ -64,6 +64,13 @@ def delete():
 		# 	if i["Pulsar"]==
 	return redirect('/')
 
+@app.route('/reset/')
+def referesh():
+	global json_data
+	r = requests.get('http://msi.mcgill.ca/GSoC_NANOGrav/pulsar_data_test.json')
+	json_data = r.json()
+	return redirect('/')
+
 
 if __name__ == '__main__':
 	global json_data
