@@ -34,6 +34,9 @@ def add():
 		json_add["RMS"] = request.form['RMS']
 		json_add["Binary"] = request.form['Binary']
 		json_add["DM"] = request.form['DM']
+		print json_add
+		if json_add["Period Derivative"]=="" and  json_add["Period"]=="" and json_add["RMS"]=="" :
+			return redirect('/')
 		json_data.append(json_add)
 		print json_add
 		print json_data

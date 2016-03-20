@@ -13,6 +13,8 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
      <link rel=stylesheet type=text/css href="{{ url_for('static', filename='graph.css') }}">
+     
+      <script src="{{ url_for('static', filename='graph.js') }}"></script>
 
     <title>d3</title>
 
@@ -421,9 +423,9 @@ $.ajax({
             <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6 ">
                 <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2  buttons">
                     <div class="btn-group-vertical" role="group" aria-label="...">
-                        <button type="button" class="btn btn-default">DATA</button>
-                        <button type="button" class="btn btn-default">ADD</button>
-                        <button type="button" class="btn btn-default">DELETE</button>
+                        <button type="button" class="btn btn-default databut">DATA</button>
+                        <button type="button" class="btn btn-default add">ADD</button>
+                        <button type="button" class="btn btn-default del">DELETE</button>
                         <a href='/reset/'><button type="button" class="btn btn-default">ORIGINAL</button></a>
                     </div>
                 </div>
