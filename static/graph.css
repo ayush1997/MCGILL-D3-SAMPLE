@@ -1,6 +1,6 @@
 
 body{
-	background-color: #2c3e50;
+	background-color: #2c3e50 !important;
 }
 .graph_box{
 
@@ -13,7 +13,7 @@ body{
 .graph{
 
 	padding-top:20px;
-	
+
 box-shadow: 0px 1px 15px 2px rgba(0,0,0,0.75);
 }
 
