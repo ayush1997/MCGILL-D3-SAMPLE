@@ -18,6 +18,7 @@ def home():
 def getdata():
 	global json_data
 	print len(json_data)
+	print json_data+"wefew"
 	return jsonify({"data":json_data})
 
 
