@@ -82,6 +82,8 @@ if __name__ == '__main__':
 	r = requests.get('http://msi.mcgill.ca/GSoC_NANOGrav/pulsar_data_test.json')
 	json_data = r.json()
 	print json_data
-	app.run(debug=True)
+	port = int(os.environ.get('PORT', 5000))
+	app.run(host='0.0.0.0',port=port)
+	# app.run(debug=True)
 	
 

@@ -1,26 +1,5 @@
 
 
-		/*
-		$.ajax({
-
-			url:"/data",
-
-			contentType:"application/json"
-		}).done(function(data){
-
-		console.log(data);
-		console.log(data["data"]);
-
-
-
-		});
-		*/
-
-
-
-
-
-
 		var w = $(".graph_box").width();
 		var h = 600;
 /*    w=800;
