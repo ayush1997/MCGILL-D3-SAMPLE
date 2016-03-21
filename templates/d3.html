@@ -60,9 +60,7 @@
 </nav>
 
 
-					<div class="col-lg-8 col-sm-8 col-xs-8 col-md-8 graph_box ">
-						<div class="graph" ></div>
-						</div>
+					
 						<div class="col-lg-4 col-sm-4 col-xs-12 col-md-12 info_box">
 						 <!--    <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2  ">
 										<div class="btn-group-vertical" role="group">
@@ -210,6 +208,9 @@
 											</div>
 						</div>
 					</div>
+					<div class="col-lg-8 col-sm-8 col-xs-8 col-md-8 graph_box ">
+						<div class="graph" ></div>
+						</div>
 				</div>
 		</div>
 
@@ -249,7 +250,7 @@
 
   </div>
 </div>
-Try it Yourself »
+
 
 <!--    <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2  ">
 										<div class="btn-group-vertical" role="group">
@@ -339,8 +340,32 @@ Try it Yourself »
 		var canvas = d3.select(".graph").append("svg")
 				.attr("width", w).attr("height", h);
 
+/*canvas.append("text")
+    .attr("class", "x label")
+    .attr("text-anchor", "end")
+    .attr("x", w/2+100)
+    .attr("y", h - 20)
+    .text("Period [s] (Linear scale)");
 
 
+canvas.append("text")
+    .attr("text-anchor", "middle")  
+    .attr("transform", "translate("+ (padding/2) +","+(height/2)+")rotate(-90)") 
+        .attr("transform", "rotate(-90)")
+
+    .text("log(Period Derivative) [S/S] (linear scale)");*/
+
+     canvas
+     .append("text")
+            .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
+            .attr("transform", "translate("+ (padding/2-10) +","+(h/2)+")rotate(-90)")  // text is drawn off the screen top left, move down and out and rotate
+            .text("log(Period Derivative) [Sec/Sec] [Linear Scale]");
+
+        canvas.append("text")
+            .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
+            .attr("transform", "translate("+ (w/2) +","+(h-(padding/3))+")")  // centre below axis
+            .text("Period [sec] [Linear Scale]");
+            
 
 		canvas.append("g")
 				.attr("class", "axis x_axis")
@@ -354,11 +379,12 @@ Try it Yourself »
 				.call(yaxis);
 
 
-
+/*
 		legend =canvas.append("g")
-						.attr("transform","translate("+(w-0)+",30)")
+						.attr("transform","translate("+(w-280)+",30)")
 						.style("font-size","12px")
-				draw_legend()
+				draw_legend()*/
+				
 		/*periods_der = []
 		 for (i = 0; i < dataset.length; i++) {
 						periods_der.push(Math.log10(dataset[i]['x']))
@@ -698,19 +724,54 @@ $.ajax({
         .append('rect')
         .attr('class', 'legend')
         .attr('height', 50)
-        .attr('width', 220)
+        .attr('width', 260)
         .attr('fill', 'white')
         .style('stroke-width', 2)
         .style('stroke', 'rgba(0,0,0,0.25)')
 
-    legend.append('text')
+/*    legend.append('text')
         .attr("x", 5)
         .attr("y", 15)
         .attr('font-size', 12)
         .attr('font-family', 'Anaheim')
-        .text('X Axis: Period (Sec) [logarithmic scale]')
-		}
+        .text('X-Axis: Period (Sec) [linear scale]')
 
+	
+		legend.append('text')
+        .attr("x", 5)
+        .attr("y", 30)
+        .attr('font-size', 12)
+        .attr('font-family', 'Anaheim')
+        .text('Y-Axis: Period Deriavtive[s/s](log pd)[linear scale]')
+*/
+ legend
+        .append("circle")
+        .attr('cx', 5)
+        .attr('cy', 15)
+        .attr('r', 3)
+        .attr("opacity", 0.75)
+        .style('fill', 'black')
+    legend.append('text')
+        .attr("x", 5)
+        .attr("y", 25)
+        .attr('font-size', 12)
+        .attr('font-family', 'Anaheim')
+        .text('Binary')
+/*    legend
+        .append("circle")
+        .attr('cx', 80)
+        .attr('cy', 41)
+        .attr('r', 3)
+        .attr("opacity", 0.75)
+        .style('fill', '#3D5AFE')*/
+    legend.append('text')
+        .attr("x", 20)
+        .attr("y", 25)
+        .attr('font-size', 12)
+        .attr('font-family', 'Anaheim')
+        .text('Non Binary')
+
+}
 
 
 		</script>
