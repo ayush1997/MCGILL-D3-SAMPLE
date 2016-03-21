@@ -39,7 +39,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Brand</a>
+			<a class="navbar-brand" href="#">MCGILL-D3 VISUALISATION</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -47,10 +47,11 @@
 		
 			
 			<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">Link</a></li>
-					<li><a href="#">Link</a></li>
-					<li><a href="#">Link</a></li>
-					<li><a href="#">Link</a></li>
+					<li><a href="#">ABOUT IT</a></li>
+					<li><a href="#">GSOC</a></li>
+					<li><a href="#">ORGANISATION</a></li>
+					<li><a href="#">CODE</a></li>
+					
 
 				
 			</ul>
@@ -96,7 +97,7 @@
 
 								
 								<div class="data_add">
-										<form action="/add/" method='post'>
+										<form action="/add/" method='post' data-toggle="validator">
 										 
 													 
 													 
@@ -205,12 +206,50 @@
 												 <a href='/reset/'><button type="button" class="btn btn-default">ORIGINAL</button></a>
 											</div>
 											<div class="btn-group" role="group">
-												<button type="button" class="btn btn-info">ABOUT IT</button>
+												<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">ABOUT IT</button>
 											</div>
 						</div>
 					</div>
 				</div>
 		</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">ABOUT IT</h4>
+      </div>
+      <div class="modal-body">
+        <p><h4>Features</h4></p>
+        <ul>
+        <li>Mouse hovering revealing data for each data point.</li>
+        <li>Plot zooming in and out with dynamic axis labelling.</li>
+       <li>Addition and/or removal of data by user, with automated plot scale adjustment.</li>
+       <li>User can directly select a node from graph to delete.</li>
+       <li>The size pf each node increases with increase in the RMS value.</li>
+       <li>Original-Button to reload the data from source location.</li>
+        </ul>
+        <p><h4>Function</h4></p>
+         <ul>
+         <li>Data : The box shows reveals the data for each data point on hover.</li>
+        <li>Add : A user need to fill the text to add the data.(Period,Period Derivative,RMS required)</li>
+        <li>Delete : The user can input the detail of the data point or hover to select a data point to delete.</li>
+        <li>Original : Button to reload the data from source location.</li>
+
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+Try it Yourself »
 
 <!--    <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2  ">
 										<div class="btn-group-vertical" role="group">
@@ -338,7 +377,22 @@
 						arr.push(dataset[i]["RMS"])
 				 /* console.log(dataset[i]["RMS"]);*/
 				}
+
+
 				arr.sort();
+
+				   for (i = 0; i < arr.length; ++i)
+    				{
+        				for (j = i + 1; j < arr.length; ++j)
+       								 {
+							            if (arr[i] > arr[j])
+							            {
+							                a =  arr[i];
+							                arr[i] = arr[j];
+							                arr[j] = a;
+							            }
+							        }
+				    }
 				console.log(arr);
 
 				data_new = []
@@ -569,7 +623,7 @@ $.ajax({
 						d3.select(this).attr({
 
 								/*  console.log(r);*/
-								fill: "orange",
+								fill: "#e67e22",
 								r: 10
 
 						});

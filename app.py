@@ -26,17 +26,19 @@ def add():
 	global json_data
 	json_add={}
 	if request.method == 'POST':
-		json_add["Period Derivative"] = request.form['Period Derivative']
-		json_add["Period"] = request.form['Period']
+		if request.form['Period Derivative']=="" and request.form['Period']=="" and request.form['RMS']=="" :
+			return redirect('/')
+		json_add["Period Derivative"] = float(request.form['Period Derivative'])
+		json_add["Period"] = float(request.form['Period'])
 		json_add["TOAs"] = request.form['TOAs']
 		json_add["Raw Profiles"] = request.form['Raw Profiles']
 		json_add["Pulsar"] = request.form['Pulsar']
-		json_add["RMS"] = request.form['RMS']
+		json_add["RMS"] = float(request.form['RMS'])
 		json_add["Binary"] = request.form['Binary']
 		json_add["DM"] = request.form['DM']
 		print json_add
-		if json_add["Period Derivative"]=="" and  json_add["Period"]=="" and json_add["RMS"]=="" :
-			return redirect('/')
+
+		
 		json_data.append(json_add)
 		print json_add
 		print json_data
