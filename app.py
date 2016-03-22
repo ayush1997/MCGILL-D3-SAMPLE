@@ -14,11 +14,11 @@ def home():
 	return render_template("d3.html")
 
 
-@app.route('/data' ,methods=["GET"])
+@app.route('/data/' ,methods=["GET","POST"])
 def getdata():
 	global json_data
 	print len(json_data)
-	print json_data+"wefew"
+	print json_data
 	return jsonify({"data":json_data})
 
 
@@ -83,8 +83,8 @@ if __name__ == '__main__':
 	r = requests.get('http://msi.mcgill.ca/GSoC_NANOGrav/pulsar_data_test.json')
 	json_data = r.json()
 	print json_data
-	port = int(os.environ.get('PORT', 5000))
-	app.run(host='0.0.0.0',port=port)
-	# app.run(debug=True)
+	# port = int(os.environ.get('PORT', 5000))
+	# app.run(host='0.0.0.0',port=port)
+	app.run(debug=True)
 	
 
