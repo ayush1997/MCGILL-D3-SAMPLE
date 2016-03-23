@@ -18,7 +18,7 @@
 		.range([h - padding, padding]);
 
 
-		var xscale = d3.scale.log()
+		var xscale = d3.scale.linear()
 
 		.range([padding, w - padding]);
 
@@ -59,11 +59,13 @@ canvas.append("text")
      canvas
      .append("text")
             .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
+            .attr("fill","#bdc3c7")
             .attr("transform", "translate("+ (padding/2-10) +","+(h/2)+")rotate(-90)")  // text is drawn off the screen top left, move down and out and rotate
             .text("log(Period Derivative) [Sec/Sec] [Linear Scale]");
 
         canvas.append("text")
             .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
+            .attr("fill","#bdc3c7")
             .attr("transform", "translate("+ (w/2) +","+(h-(padding/3))+")")  // centre below axis
             .text("Period [sec] [Linear Scale]");
             
@@ -80,12 +82,64 @@ canvas.append("text")
 				.call(yaxis);
 
 
-
+		
 		legend =canvas.append("g")
-						.attr("transform","translate("+(w-280)+",10)")
+						.attr("transform","translate("+(w-290)+",-5)")
 						.style("font-size","12px")
-				draw_legend()
-				
+		 legend
+        .append('rect')
+        .attr('class', 'legend')
+        .attr('height', 50)
+        .attr('width', 220)
+        .attr('fill', 'white')
+        .style('stroke-width', 2)
+        .style('stroke', 'rgba(0,0,0,0.25)')
+
+       legend.append('text')
+        .attr("x", 5)
+        .attr("y", 15)
+        .attr('font-size', 12)
+        .attr('font-family', 'Anaheim')
+        .text('X Axis: Period (Sec)')
+    legend.append('text')
+        .attr("x", 5)
+        .attr("y", 30)
+        .attr('font-size', 12)
+        .attr('font-family', 'Anaheim')
+        .text('Y Axis: log(Period Derivative) (Sec/Sec)')
+  	
+
+	  legend.append('text')
+	  	 .attr('class', 'binary')
+        .attr("x", 5)
+        .attr("y", 42)
+        .attr('font-size', 70)
+        .attr('font-family', 'Anaheim')
+        .text('.')
+
+	  legend.append('text')
+
+        .attr("x", 20)
+        .attr("y", 43)
+        .attr('font-size', 12)
+        .attr('font-family', 'Anaheim')
+        .text('Binary')
+
+    legend.append('text')
+        .attr("x", 90)
+        .attr("y", 43)
+        .attr('font-size', 12)
+        .attr('font-family', 'Anaheim')
+        .text('Non Binary')
+
+     legend.append('text')
+     .attr("class","nonbin")
+        .attr("x", 75)
+        .attr("y", 42)
+        .attr('font-size', 70)
+        .attr('font-family', 'Anaheim')
+        
+        .text('.')
 		/*periods_der = []
 		 for (i = 0; i < dataset.length; i++) {
 						periods_der.push(Math.log10(dataset[i]['x']))

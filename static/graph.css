@@ -123,7 +123,14 @@ padding:5px 15px 15px 10px;
   fill:white;
   stroke:black;
   opacity:0.8;}
-
+.binary{
+	fill:#2ecc71;
+	stroke:#2ecc71;
+}
+.nonbin{
+	fill:#e74c3c;
+		stroke:#e74c3c;
+}
 .text{
 	color:white;
 }
