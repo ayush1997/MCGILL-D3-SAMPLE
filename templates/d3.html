@@ -74,15 +74,18 @@
 								<div class="common_box">
 
 									<div class="data">
-											<p class="info_text">Pulsar Name:<span class="info_data pulsar"></span></p>
-											<p class="info_text">RMS:<span class="info_data rms"></span></p>
+											<p class="info_text">Pulsar:<span class="info_data pulsar"></span></p>
+											<p class="info_text">TOAs:<span class="info_data toas"></span></p>
+											<p class="info_text">Raw Profiles:<span class="info_data rawprof"></span></p>
+											<p class="info_text">Period:<span class="info_data period"></span></p>
+											<p class="info_text">Period Derivative:<span class="info_data periodder"></span></p>
 											<p class="info_text">DM:<span class="info_data dm"></span></p>
-											<p class="info_text">BINARY:<span class="info_data binary"></span></p>
-											<p class="info_text">PERIOD:<span class="info_data period"></span></p>
-											<p class="info_text">PERIOD DERIVATIVE:<span class="info_data periodder"></span></p>
-											<p class="info_text">RAW PROFILE:<span class="info_data rawprof"></span></p>
-											<p class="info_text">TOAS:<span class="info_data toas"></span></p>
-
+											<p class="info_text">RMS:<span class="info_data rms"></span></p>
+											
+											<p class="info_text">Binary:<span class="info_data binary"></span></p>
+											
+											
+											
 
 									</div>
 
@@ -103,35 +106,35 @@
 													</div>
 														 <div class="input-group add">
 														<span class="input-group-addon" id="basic-addon1">TOAs</span>
-														<input type="text" class="form-control" placeholder="TOAs" name="TOAs">
+														<input type="text" class="form-control" placeholder="Number of time of arrival" name="TOAs">
 													</div>
 													 <div class="input-group add">
 														<span class="input-group-addon" id="basic-addon1">Raw Profiles</span>
-														<input type="text" class="form-control" placeholder="Username" name="Raw Profiles">
+														<input type="text" class="form-control" placeholder="Number of raw data files" name="Raw Profiles">
 													</div>
 														<div class="input-group add">
 																<span class="input-group-addon">Period</span>
-																<input type="text" class="form-control" name="Period">
+																<input type="text" class="form-control" name="Period" placeholder="Pulsar's rotation period">
 																<span class="input-group-addon">s</span>
 														</div>
 														<div class="input-group add">
 																<span class="input-group-addon">Period Derivative</span>
-																<input type="text" class="form-control pd"name="Period Derivative">
+																<input type="text" class="form-control pd"name="Period Derivative" placeholder="Pulsar's Spin-down rate">
 																<span class="input-group-addon">s/s</span>
 														</div>
 														 <div class="input-group add">
 																<span class="input-group-addon">DM</span>
-																<input type="text" class="form-control p" name="DM">
+																<input type="text" class="form-control p" name="DM" placeholder="Dispersion measure">
 																<span class="input-group-addon">pc/cc</span>
 														</div>
 														<div class="input-group add">
 																<span class="input-group-addon">RMS</span>
-																<input type="text" class="form-control" name="RMS">
+																<input type="text" class="form-control" name="RMS" placeholder="root-mean-square">
 																<span class="input-group-addon">us</span>
 														</div>
 															<div class="input-group add">
 														<span class="input-group-addon" id="basic-addon1">Binary</span>
-														<input type="text" class="form-control" placeholder="Username" name="Binary">
+														<input type="text" class="form-control" placeholder="State of pulsar" name="Binary">
 													</div>  
 													<center><input class="btn btn-default active" type="submit" value="ADD"> </center>         
 										</form>
@@ -144,42 +147,42 @@
 										<form action="/delete/" method='post'>
 										 
 													 
-													 <p>FILL IT OR SELECT THE NODE</p>
+													 <center><p style="color:white">FILL IT OR SELECT THE NODE</p></center>
 														<div class="input-group add">
 														<span class="input-group-addon" id="basic-addon1">Pulsar</span>
 														<input type="text" class="form-control pulsar" placeholder="Pulsar Name" name="Pulsar">
 													</div>
 														 <div class="input-group add">
 														<span class="input-group-addon" id="basic-addon1">TOAs</span>
-														<input type="text" class="form-control toas" placeholder="TOAs" name="TOAs">
+														<input type="text" class="form-control toas" placeholder="Number of time of arrival" name="TOAs">
 													</div>
 													 <div class="input-group add">
 														<span class="input-group-addon" id="basic-addon1">Raw Profiles</span>
-														<input type="text" class="form-control rawprof" placeholder="Username" name="Raw Profiles">
+														<input type="text" class="form-control rawprof" placeholder="Number of raw profiles" name="Raw Profiles">
 													</div>
 														<div class="input-group add">
 																<span class="input-group-addon">Period</span>
-																<input type="text" class="form-control period" name="Period">
+																<input type="text" class="form-control period" name="Period"  placeholder="Pulsar's rotation period">
 																<span class="input-group-addon">s</span>
 														</div>
 														<div class="input-group add">
 																<span class="input-group-addon">Period Derivative</span>
-																<input type="text" class="form-control pd periodder"name="Period Derivative">
-																<span class="input-group-addon">s/s</span>
+																<input type="text" class="form-control pd periodder" name="Period Derivative">
+																<span class="input-group-addon" placeholder="Pulsar's Spin-down rate">s/s</span>
 														</div>
 														 <div class="input-group add">
 																<span class="input-group-addon">DM</span>
-																<input type="text" class="form-control p dm" name="DM">
+																<input type="text" class="form-control p dm" name="DM" placeholder="Dispersive measure">
 																<span class="input-group-addon">pc/cc</span>
 														</div>
 														<div class="input-group add">
 																<span class="input-group-addon">RMS</span>
-																<input type="text" class="form-control rms" name="RMS">
+																<input type="text" class="form-control rms" name="RMS" placeholder="root-mean-square">
 																<span class="input-group-addon">us</span>
 														</div>
 															<div class="input-group add">
 														<span class="input-group-addon" id="basic-addon1">Binary</span>
-														<input type="text" class="form-control binary" placeholder="Username" name="Binary">
+														<input type="text" class="form-control binary" placeholder="Username" name="Binary" placeholder="State of Binary">
 													</div>  
 													<center><input class="btn btn-default active" type="submit" value="DELETE"> </center>         
 										</form>
@@ -216,36 +219,36 @@
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">ABOUT IT</h4>
-      </div>
-      <div class="modal-body">
-        <p><h4>Features</h4></p>
-        <ul>
-        <li>Mouse hovering revealing data for each data point.</li>
-        <li>Plot zooming in and out with dynamic axis labelling.</li>
-       <li>Addition and/or removal of data by user, with automated plot scale adjustment.</li>
-       <li>User can directly select a node from graph to delete.</li>
-       <li>The size pf each node increases with increase in the RMS value.</li>
-       <li>Original-Button to reload the data from source location.</li>
-       <li>Since it is deployed on heroku server, so changes made at one place will be reflected on all devices viewing it.</li>
-        </ul>
-        <p><h4>Function</h4></p>
-         <ul>
-         <li>Data : The box shows reveals the data for each data point on hover.</li>
-        <li>Add : A user need to fill the text to add the data.(Period,Period Derivative,RMS required)</li>
-        <li>Delete : The user can input the detail of the data point or hover to select a data point to delete.</li>
-        <li>Original : Button to reload the data from source location.</li>
+	<!-- Modal content-->
+	<div class="modal-content">
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal">&times;</button>
+		<h4 class="modal-title">ABOUT IT</h4>
+	  </div>
+	  <div class="modal-body">
+		<p><h4>Features</h4></p>
+		<ul>
+		<li>Mouse hovering revealing data for each data point.</li>
+		<li>Plot zooming in and out with dynamic axis labelling.</li>
+	   <li>Addition and/or removal of data by user, with automated plot scale adjustment.</li>
+	   <li>User can directly select a node from graph to delete.</li>
+	   <li>The size pf each node increases with increase in the RMS value.</li>
+	   <li>Original-Button to reload the data from source location.</li>
+	   <li>Since it is deployed on heroku server, so changes made at one place will be reflected on all devices viewing it.</li>
+		</ul>
+		<p><h4>Function</h4></p>
+		 <ul>
+		 <li>Data : The box shows reveals the data for each data point on hover.</li>
+		<li>Add : A user need to fill the text to add the data.(Period,Period Derivative,RMS required)</li>
+		<li>Delete : The user can input the detail of the data point or hover to select a data point to delete.</li>
+		<li>Original : Button to reload the data from source location.</li>
 
-        </ul>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
+		</ul>
+	  </div>
+	  <div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	  </div>
+	</div>
 
   </div>
 </div>
