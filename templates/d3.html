@@ -1,66 +1,45 @@
 <html>
 
 <head>
-		<!-- jquery -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-		<!-- d3.js -->
-		<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-	
-
-	
-  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-		 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='graph.css') }}">
-		
-		 
-		 
-
-		<title>d3</title>
-
-
-
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <!-- d3.js -->
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='graph.css') }}">
+    <title>d3</title>
 </head>
 
 <body>
-
-
-
-<div class="container-fluid">
-		<div class="row">
-				
-					<nav class="navbar navbar-inverse">
-	<div class="container-fluid">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">MCGILL-D3 VISUALISATION</a>
-		</div>
-
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		
-			
-			<ul class="nav navbar-nav navbar-right">
-					<li><a data-toggle="modal" href="#myModal">ABOUT IT</a></li>
-					<li><a href="https://summerofcode.withgoogle.com">GSOC</a></li>
-					<li><a href="http://msi.mcgill.ca/Gravitational_Waves,_Pulsars_and_NANOGrav.html">ORGANISATION</a></li>
-					<li><a href="https://github.com/ayush1997/MCGILL-D3-SAMPLE" >CODE</a></li>
-					
-
-				
-			</ul>
-		</div><!-- /.navbar-collapse -->
-	</div><!-- /.container-fluid -->
-</nav>
-
-
-					
-						<div class="col-lg-4 col-sm-4 col-xs-12 col-md-12 info_box">
-						 <!--    <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2  ">
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">MCGILL-D3 VISUALISATION</a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a data-toggle="modal" href="#myModal">ABOUT IT</a></li>
+                            <li><a href="https://summerofcode.withgoogle.com">GSOC</a></li>
+                            <li><a href="http://msi.mcgill.ca/Gravitational_Waves,_Pulsars_and_NANOGrav.html">ORGANISATION</a></li>
+                            <li><a href="https://github.com/ayush1997/MCGILL-D3-SAMPLE">CODE</a></li>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container-fluid -->
+            </nav>
+            <div class="col-lg-4 col-sm-4 col-xs-12 col-md-12 info_box">
+                <!--    <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2  ">
 										<div class="btn-group-vertical" role="group">
 												<button type="button" class="btn btn-default  databut">DATA</button>
 												<button type="button" class="btn  btn-success add">ADD</button>
@@ -69,192 +48,169 @@
 										</div>
 								</div>
  -->
-
-								<!-- <div class="col-lg-10 col-sm-10 col-xs-10 col-md-10"> -->
-								<div class="common_box">
-
-									<div class="data">
-											<p class="info_text">Pulsar:<span class="info_data pulsar"></span></p>
-											<p class="info_text">TOAs:<span class="info_data toas"></span></p>
-											<p class="info_text">Raw Profiles:<span class="info_data rawprof"></span></p>
-											<p class="info_text">Period:<span class="info_data period"></span></p>
-											<p class="info_text">Period Derivative:<span class="info_data periodder"></span></p>
-											<p class="info_text">DM:<span class="info_data dm"></span></p>
-											<p class="info_text">RMS:<span class="info_data rms"></span></p>
-											
-											<p class="info_text">Binary:<span class="info_data binary"></span></p>
-											
-											
-											
-
-									</div>
-
-
-						<!--     </div> -->
-								
-
-
-								
-								<div class="data_add">
-										<form action="/add/" method='post' data-toggle="validator">
-										 
-													 
-													 
-														<div class="input-group add">
-														<span class="input-group-addon" id="basic-addon1">Pulsar</span>
-														<input type="text" class="form-control " placeholder="Pulsar Name" name="Pulsar">
-													</div>
-														 <div class="input-group add">
-														<span class="input-group-addon" id="basic-addon1">TOAs</span>
-														<input type="text" class="form-control" placeholder="Number of time of arrival" name="TOAs">
-													</div>
-													 <div class="input-group add">
-														<span class="input-group-addon" id="basic-addon1">Raw Profiles</span>
-														<input type="text" class="form-control" placeholder="Number of raw data files" name="Raw Profiles">
-													</div>
-														<div class="input-group add">
-																<span class="input-group-addon">Period</span>
-																<input type="text" class="form-control" name="Period" placeholder="Pulsar's rotation period">
-																<span class="input-group-addon">s</span>
-														</div>
-														<div class="input-group add">
-																<span class="input-group-addon">Period Derivative</span>
-																<input type="text" class="form-control pd"name="Period Derivative" placeholder="Pulsar's Spin-down rate">
-																<span class="input-group-addon">s/s</span>
-														</div>
-														 <div class="input-group add">
-																<span class="input-group-addon">DM</span>
-																<input type="text" class="form-control p" name="DM" placeholder="Dispersion measure">
-																<span class="input-group-addon">pc/cc</span>
-														</div>
-														<div class="input-group add">
-																<span class="input-group-addon">RMS</span>
-																<input type="text" class="form-control" name="RMS" placeholder="root-mean-square">
-																<span class="input-group-addon">us</span>
-														</div>
-															<div class="input-group add">
-														<span class="input-group-addon" id="basic-addon1">Binary</span>
-														<input type="text" class="form-control" placeholder="State of pulsar" name="Binary">
-													</div>  
-													<center><input class="btn btn-default active" type="submit" value="ADD"> </center>         
-										</form>
-										</div>
-							
-
-
-								
-								<div class="data_delete">
-										<form action="/delete/" method='post'>
-										 
-													 
-													 <center><p style="color:white">FILL IT OR SELECT THE NODE</p></center>
-														<div class="input-group add">
-														<span class="input-group-addon" id="basic-addon1">Pulsar</span>
-														<input type="text" class="form-control pulsar" placeholder="Pulsar Name" name="Pulsar">
-													</div>
-														 <div class="input-group add">
-														<span class="input-group-addon" id="basic-addon1">TOAs</span>
-														<input type="text" class="form-control toas" placeholder="Number of time of arrival" name="TOAs">
-													</div>
-													 <div class="input-group add">
-														<span class="input-group-addon" id="basic-addon1">Raw Profiles</span>
-														<input type="text" class="form-control rawprof" placeholder="Number of raw profiles" name="Raw Profiles">
-													</div>
-														<div class="input-group add">
-																<span class="input-group-addon">Period</span>
-																<input type="text" class="form-control period" name="Period"  placeholder="Pulsar's rotation period">
-																<span class="input-group-addon">s</span>
-														</div>
-														<div class="input-group add">
-																<span class="input-group-addon">Period Derivative</span>
-																<input type="text" class="form-control pd periodder" name="Period Derivative">
-																<span class="input-group-addon" placeholder="Pulsar's Spin-down rate">s/s</span>
-														</div>
-														 <div class="input-group add">
-																<span class="input-group-addon">DM</span>
-																<input type="text" class="form-control p dm" name="DM" placeholder="Dispersive measure">
-																<span class="input-group-addon">pc/cc</span>
-														</div>
-														<div class="input-group add">
-																<span class="input-group-addon">RMS</span>
-																<input type="text" class="form-control rms" name="RMS" placeholder="root-mean-square">
-																<span class="input-group-addon">us</span>
-														</div>
-															<div class="input-group add">
-														<span class="input-group-addon" id="basic-addon1">Binary</span>
-														<input type="text" class="form-control binary" placeholder="Username" name="Binary" placeholder="State of Binary">
-													</div>  
-													<center><input class="btn btn-default active" type="submit" value="DELETE"> </center>         
-										</form>
-										</div>
-								
-
-							 
-							</div>
-							 <div class="btn-group btn-group-justified menu" role="group" >
-											<div class="btn-group" role="group">
-												 <button type="button" class="btn btn-primary  databut">DATA</button>
-											</div>
-											<div class="btn-group" role="group">
-												<button type="button" class="btn  btn-success add_data">ADD</button>
-											</div>
-											<div class="btn-group" role="group">
-												<button type="button" class="btn btn-danger del special">DELETE</button>
-											</div>
-											<div class="btn-group" role="group">
-												 <a href='/reset/'><button type="button" class="btn btn-default">ORIGINAL</button></a>
-											</div>
-											<div class="btn-group" role="group">
-												<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">ABOUT IT</button>
-											</div>
-						</div>
-					</div>
-					<div class="col-lg-8 col-sm-8 col-xs-8 col-md-8 graph_box ">
-						<div class="graph" ></div>
-						</div>
-				</div>
-		</div>
-
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-	<!-- Modal content-->
-	<div class="modal-content">
-	  <div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal">&times;</button>
-		<h4 class="modal-title">ABOUT IT</h4>
-	  </div>
-	  <div class="modal-body">
-		<p><h4>Features</h4></p>
-		<ul>
-		<li>Mouse hovering revealing data for each data point.</li>
-		<li>Plot zooming in and out with dynamic axis labelling.</li>
-	   <li>Addition and/or removal of data by user, with automated plot scale adjustment.</li>
-	   <li>User can directly select a node from graph to delete.</li>
-	   <li>The size pf each node increases with increase in the RMS value.</li>
-	   <li>Original-Button to reload the data from source location.</li>
-	   <li>Since it is deployed on heroku server, so changes made at one place will be reflected on all devices viewing it.</li>
-		</ul>
-		<p><h4>Function</h4></p>
-		 <ul>
-		 <li>Data : The box shows reveals the data for each data point on hover.</li>
-		<li>Add : A user need to fill the text to add the data.(Period,Period Derivative,RMS required)</li>
-		<li>Delete : The user can input the detail of the data point or hover to select a data point to delete.</li>
-		<li>Original : Button to reload the data from source location.</li>
-
-		</ul>
-	  </div>
-	  <div class="modal-footer">
-		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	  </div>
-	</div>
-
-  </div>
-</div>
-
-
-<!--    <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2  ">
+                <!-- <div class="col-lg-10 col-sm-10 col-xs-10 col-md-10"> -->
+                <div class="common_box">
+                    <div class="data">
+                        <p class="info_text">Pulsar:<span class="info_data pulsar"></span></p>
+                        <p class="info_text">TOAs:<span class="info_data toas"></span></p>
+                        <p class="info_text">Raw Profiles:<span class="info_data rawprof"></span></p>
+                        <p class="info_text">Period:<span class="info_data period"></span></p>
+                        <p class="info_text">Period Derivative:<span class="info_data periodder"></span></p>
+                        <p class="info_text">DM:<span class="info_data dm"></span></p>
+                        <p class="info_text">RMS:<span class="info_data rms"></span></p>
+                        <p class="info_text">Binary:<span class="info_data binary"></span></p>
+                    </div>
+                    <!--     </div> -->
+                    <div class="data_add">
+                        <form action="/add/" method='post' data-toggle="validator">
+                            <div class="input-group add">
+                                <span class="input-group-addon" id="basic-addon1">Pulsar</span>
+                                <input type="text" class="form-control " placeholder="Pulsar Name" name="Pulsar">
+                            </div>
+                            <div class="input-group add">
+                                <span class="input-group-addon" id="basic-addon1">TOAs</span>
+                                <input type="text" class="form-control" placeholder="Number of time of arrival" name="TOAs">
+                            </div>
+                            <div class="input-group add">
+                                <span class="input-group-addon" id="basic-addon1">Raw Profiles</span>
+                                <input type="text" class="form-control" placeholder="Number of raw data files" name="Raw Profiles">
+                            </div>
+                            <div class="input-group add">
+                                <span class="input-group-addon">Period</span>
+                                <input type="text" class="form-control" name="Period" placeholder="Pulsar's rotation period">
+                                <span class="input-group-addon">s</span>
+                            </div>
+                            <div class="input-group add">
+                                <span class="input-group-addon">Period Derivative</span>
+                                <input type="text" class="form-control pd" name="Period Derivative" placeholder="Pulsar's Spin-down rate">
+                                <span class="input-group-addon">s/s</span>
+                            </div>
+                            <div class="input-group add">
+                                <span class="input-group-addon">DM</span>
+                                <input type="text" class="form-control p" name="DM" placeholder="Dispersion measure">
+                                <span class="input-group-addon">pc/cc</span>
+                            </div>
+                            <div class="input-group add">
+                                <span class="input-group-addon">RMS</span>
+                                <input type="text" class="form-control" name="RMS" placeholder="root-mean-square">
+                                <span class="input-group-addon">us</span>
+                            </div>
+                            <div class="input-group add">
+                                <span class="input-group-addon" id="basic-addon1">Binary</span>
+                                <input type="text" class="form-control" placeholder="State of pulsar" name="Binary">
+                            </div>
+                            <center>
+                                <input class="btn btn-default active" type="submit" value="ADD"> </center>
+                        </form>
+                    </div>
+                    <div class="data_delete">
+                        <form action="/delete/" method='post'>
+                            <center>
+                                <p style="color:white">FILL IT OR SELECT THE NODE</p>
+                            </center>
+                            <div class="input-group add">
+                                <span class="input-group-addon" id="basic-addon1">Pulsar</span>
+                                <input type="text" class="form-control pulsar" placeholder="Pulsar Name" name="Pulsar">
+                            </div>
+                            <div class="input-group add">
+                                <span class="input-group-addon" id="basic-addon1">TOAs</span>
+                                <input type="text" class="form-control toas" placeholder="Number of time of arrival" name="TOAs">
+                            </div>
+                            <div class="input-group add">
+                                <span class="input-group-addon" id="basic-addon1">Raw Profiles</span>
+                                <input type="text" class="form-control rawprof" placeholder="Number of raw profiles" name="Raw Profiles">
+                            </div>
+                            <div class="input-group add">
+                                <span class="input-group-addon">Period</span>
+                                <input type="text" class="form-control period" name="Period" placeholder="Pulsar's rotation period">
+                                <span class="input-group-addon">s</span>
+                            </div>
+                            <div class="input-group add">
+                                <span class="input-group-addon">Period Derivative</span>
+                                <input type="text" class="form-control pd periodder" name="Period Derivative">
+                                <span class="input-group-addon" placeholder="Pulsar's Spin-down rate">s/s</span>
+                            </div>
+                            <div class="input-group add">
+                                <span class="input-group-addon">DM</span>
+                                <input type="text" class="form-control p dm" name="DM" placeholder="Dispersive measure">
+                                <span class="input-group-addon">pc/cc</span>
+                            </div>
+                            <div class="input-group add">
+                                <span class="input-group-addon">RMS</span>
+                                <input type="text" class="form-control rms" name="RMS" placeholder="root-mean-square">
+                                <span class="input-group-addon">us</span>
+                            </div>
+                            <div class="input-group add">
+                                <span class="input-group-addon" id="basic-addon1">Binary</span>
+                                <input type="text" class="form-control binary" placeholder="Username" name="Binary" placeholder="State of Binary">
+                            </div>
+                            <center>
+                                <input class="btn btn-default active" type="submit" value="DELETE"> </center>
+                        </form>
+                    </div>
+                </div>
+                <div class="btn-group btn-group-justified menu" role="group">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-primary  databut">DATA</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn  btn-success add_data">ADD</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-danger del special">DELETE</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <a href='/reset/'>
+                            <button type="button" class="btn btn-default">ORIGINAL</button>
+                        </a>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">ABOUT IT</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8 graph_box ">
+                <div class="graph"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">ABOUT IT</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <h4>Features</h4></p>
+                    <ul>
+                        <li>Mouse hovering revealing data for each data point.</li>
+                        <li>Plot zooming in and out with dynamic axis labelling.</li>
+                        <li>Addition and/or removal of data by user, with automated plot scale adjustment.</li>
+                        <li>User can directly select a node from graph to delete.</li>
+                        <li>The size pf each node increases with increase in the RMS value.</li>
+                        <li>Original-Button to reload the data from source location.</li>
+                        <li>Since it is deployed on heroku server, so changes made at one place will be reflected on all devices viewing it.</li>
+                    </ul>
+                    <p>
+                        <h4>Function</h4></p>
+                    <ul>
+                        <li>Data : The box shows reveals the data for each data point on hover.</li>
+                        <li>Add : A user need to fill the text to add the data.(Period,Period Derivative,RMS required)</li>
+                        <li>Delete : The user can input the detail of the data point or hover to select a data point to delete.</li>
+                        <li>Original : Button to reload the data from source location.</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--    <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2  ">
 										<div class="btn-group-vertical" role="group">
 												<button type="button" class="btn btn-default  databut">DATA</button>
 												<button type="button" class="btn  btn-success add">ADD</button>
@@ -279,12 +235,6 @@
 </body>
 <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 <script src="{{ url_for('static', filename='d3.js') }}"></script>
- <script src="{{ url_for('static', filename='graph.js') }}"></script>
-
+<script src="{{ url_for('static', filename='graph.js') }}"></script>
 
 </html>
-
-
-
-
-
