@@ -18,7 +18,7 @@
 		.range([h - padding, padding]);
 
 
-		var xscale = d3.scale.linear()
+		var xscale = d3.scale.log()
 
 		.range([padding, w - padding]);
 
@@ -80,11 +80,11 @@ canvas.append("text")
 				.call(yaxis);
 
 
-/*
+
 		legend =canvas.append("g")
-						.attr("transform","translate("+(w-280)+",30)")
+						.attr("transform","translate("+(w-280)+",10)")
 						.style("font-size","12px")
-				draw_legend()*/
+				draw_legend()
 				
 		/*periods_der = []
 		 for (i = 0; i < dataset.length; i++) {
@@ -447,7 +447,7 @@ $.ajax({
 */
  legend
         .append("circle")
-        .attr('cx', 5)
+        .attr('cx', 95)
         .attr('cy', 15)
         .attr('r', 3)
         .attr("opacity", 0.75)
@@ -466,7 +466,7 @@ $.ajax({
         .attr("opacity", 0.75)
         .style('fill', '#3D5AFE')*/
     legend.append('text')
-        .attr("x", 20)
+        .attr("x", 100)
         .attr("y", 25)
         .attr('font-size', 12)
         .attr('font-family', 'Anaheim')
