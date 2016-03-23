@@ -108,7 +108,7 @@ legend.append('text')
 
 
 legend.append('text')
-    .attr('class', 'binary')
+    .attr('class', 'binary_title')
     .attr("x", 5)
     .attr("y", 42)
     .attr('font-size', 70)
