@@ -8,12 +8,13 @@ json_data = []
 
 app= Flask(__name__)
 
+#This is the home route.
 @app.route('/')
 def home():
 
 	return render_template("d3.html")
 
-
+#This is called to fetch data for the graph.
 @app.route('/data/' ,methods=["GET","POST"])
 def getdata():
 	global json_data
@@ -21,7 +22,7 @@ def getdata():
 	print json_data
 	return jsonify({"data":json_data})
 
-
+#Data to be added is sent to this route and this inturn redirects to home route with changed data.
 @app.route('/add/',methods=["GET","POST"])
 def add():
 	global json_data
@@ -46,6 +47,9 @@ def add():
 		return redirect('/')
 	else:
 		return "error"
+
+
+#Data to be deleted is sent to this route and this inturn redirects to home route with changed data.
 @app.route('/delete/',methods=["GET","POST"])
 def delete():
 	global json_data
@@ -70,6 +74,7 @@ def delete():
 		# 	if i["Pulsar"]==
 	return redirect('/')
 
+#This fetches the original data and redirects to home route.
 @app.route('/reset/')
 def referesh():
 	global json_data

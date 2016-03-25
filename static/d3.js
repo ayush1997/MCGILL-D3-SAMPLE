@@ -1,31 +1,32 @@
 var w = $(".graph_box").width();
 var h = 600;
-/*    w=800;
-		h = 600;*/
-console.log(w);
-console.log(h);
+
+/*console.log(w);
+console.log(h);*/
 
 var padding = 50;
 var clicked = "no"
 var id = -1;
 
 
-
+//The y scale is set to linear.
 var yscale = d3.scale.linear()
 
 .range([h - padding, padding]);
 
-
+//The x scale is set to linear.
 var xscale = d3.scale.linear()
 
 .range([padding, w - padding]);
 
+//The x-axis is made using this.
 var xaxis = d3.svg.axis()
     .scale(xscale)
     .orient("bottom")
     .ticks(10)
     .tickSize(padding - h);
 
+//The y-axis is made using this.
 var yaxis = d3.svg.axis()
     .scale(yscale)
     .orient("left")
@@ -35,25 +36,12 @@ var yaxis = d3.svg.axis()
 
 
 
-
+//canvas selector created.
 var canvas = d3.select(".graph").append("svg")
     .attr("width", w).attr("height", h);
 
-/*canvas.append("text")
-    .attr("class", "x label")
-    .attr("text-anchor", "end")
-    .attr("x", w/2+100)
-    .attr("y", h - 20)
-    .text("Period [s] (Linear scale)");
 
-
-canvas.append("text")
-    .attr("text-anchor", "middle")  
-    .attr("transform", "translate("+ (padding/2) +","+(height/2)+")rotate(-90)") 
-        .attr("transform", "rotate(-90)")
-
-    .text("log(Period Derivative) [S/S] (linear scale)");*/
-
+//Adds the title to y-axis
 canvas
     .append("text")
     .attr("text-anchor", "middle") // this makes it easy to centre the text as the transform is applied to the anchor
@@ -61,6 +49,7 @@ canvas
     .attr("transform", "translate(" + (padding / 2 - 10) + "," + (h / 2) + ")rotate(-90)") // text is drawn off the screen top left, move down and out and rotate
     .text("log(Period Derivative) [Sec/Sec] [Linear Scale]");
 
+//Adds the title to x-axis
 canvas.append("text")
     .attr("text-anchor", "middle") // this makes it easy to centre the text as the transform is applied to the anchor
     .attr("fill", "#bdc3c7")
@@ -69,8 +58,8 @@ canvas.append("text")
 
 
 canvas.append("g")
-    .attr("class", "axis x_axis")
-    .attr("transform", "translate(0," + (h - padding) + ")") //Assign "axis" class
+    .attr("class", "axis x_axis")//Assign "axis" class
+    .attr("transform", "translate(0," + (h - padding) + ")") 
     .call(xaxis);
 
 
@@ -80,7 +69,7 @@ canvas.append("g")
     .call(yaxis);
 
 
-
+//Legend for the graph is made
 legend = canvas.append("g")
     .attr("transform", "translate(" + (w - 290) + ",-5)")
     .style("font-size", "12px")
@@ -136,17 +125,11 @@ legend.append('text')
     .attr("y", 42)
     .attr('font-size', 70)
     .attr('font-family', 'Anaheim')
-
-.text('.')
-    /*periods_der = []
-     for (i = 0; i < dataset.length; i++) {
-    				periods_der.push(Math.log10(dataset[i]['x']))
-    		}
-
-    		console.log(periods_der);*/
+    .text('.')
+    
 
 
-
+//The call is made to /data/ route in flask which returns the data. 
 d3.json("data", function(data) {
     dataset = data["data"];
     console.log(dataset.length);
@@ -157,7 +140,7 @@ d3.json("data", function(data) {
             /* console.log(dataset[i]["RMS"]);*/
     }
 
-
+    //Data is sorted according to the RMS values.
     arr.sort();
 
     for (i = 0; i < arr.length; ++i) {
@@ -196,6 +179,7 @@ d3.json("data", function(data) {
 
 });
 
+//This function updates the axis when ooming in and out.
 function update(dataset) {
     var circle =
 
@@ -219,29 +203,8 @@ function update(dataset) {
 
 
 }
-/*function zoomed(dataset) {
 
-	console.log("in the zoom fn");
-	console.log(dataset);
-		 xaxis.scale(xscale);
-
-			yaxis.scale(yscale);
-
-			canvas.selectAll("g.x_axis").call(xaxis);
-			canvas.selectAll("g.y_axis").call(yaxis);
-
-			 canvas.selectAll(".points")
-		.data(dataset)
-		.enter()
-		.append("circle")
-		.attr("cx", function(d) { return xscale(d["Period"]); })
-		.attr("cy", function(d) { return yscale(Math.log10(d["Period Derivative"])) ;})
-		.attr("r", "5px")
-		.attr("fill", "black")
-		
-
-}*/
-
+//This function is the main function which updates addidtion and deletion of data.
 function refreshgraph(dataset) {
 
     /*console.log(dataset);*/
@@ -260,21 +223,12 @@ function refreshgraph(dataset) {
     })])
 
 
-    /*yscale.domain([d3.min(dataset, function(d) { return Math.log10(d["Period Derivative"]); }), d3.max(dataset, function(d) { return Math.log10(d["Period Derivative"]) ;} )]);
-				xscale .domain([d3.min(dataset, function(d) { return d["Period"]; }), d3.max(dataset, function(d) { return d["Period"]; })]);
-*/
     xaxis.scale(xscale);
     yaxis.scale(yscale);
 
     canvas.selectAll("g.x_axis").call(xaxis);
     canvas.selectAll("g.y_axis").call(yaxis);
 
-    /*  canvas.call(zoom);  */
-
-    /*
-    canvas.call(xaxis);
-    canvas.call(yaxis);
-    */
     canvas.on("click", function() {
         var coor = d3.mouse(this);
         console.log(xscale.invert(coor[0]) + "  " + yscale.invert(coor[1]));
@@ -336,12 +290,10 @@ function setcolor(d) {
     }
 }
 
+//This helps in selection of data points which then can be deleted.
 function selection(d, i) {
 
-    /*console.log(d3.select(this).style("fill"));
-     */
-    /*console.log(i);*/
-
+    
     if (clicked == "no") {
         d3.select(this).attr({
             fill: "black",
@@ -358,9 +310,7 @@ function selection(d, i) {
         $(".rawprof").val(d["Raw Profiles"]);
         $(".toas").val(d["TOAs"]);
 
-        /*  $("button special").removeClass("btn-danger");
-        	$("button special").addClass("btn-warning");*/
-
+     
 
     } else if (clicked == "yes" && i == id) {
 
@@ -384,15 +334,8 @@ function selection(d, i) {
     console.log(clicked);
 }
 
-/* console.log(d);
-$.ajax({
-	url:"/delete/"+d["Pulsar"],
-	contentType: "application/json"
-});
 
-}*/
-
-
+//This function is called on mousehover on a data point.
 function handlemouseover(d, i) {
 
     if (clicked == "no") {
@@ -431,10 +374,8 @@ function handlemouseover(d, i) {
 
 }
 
-/*console.log(d);
-console.log(i);
-}*/
 
+//This function is called when mouse leaves a data point.
 function handlemouseout(d, i) {
 
     if (clicked == "no") {
@@ -469,56 +410,3 @@ function handlemouseout(d, i) {
     console.log(clicked);
 }
 
-function draw_legend() {
-    legend
-        .append('rect')
-        .attr('class', 'legend')
-        .attr('height', 50)
-        .attr('width', 260)
-        .attr('fill', 'white')
-        .style('stroke-width', 2)
-        .style('stroke', 'rgba(0,0,0,0.25)')
-
-    /*    legend.append('text')
-            .attr("x", 5)
-            .attr("y", 15)
-            .attr('font-size', 12)
-            .attr('font-family', 'Anaheim')
-            .text('X-Axis: Period (Sec) [linear scale]')
-
-    	
-    		legend.append('text')
-            .attr("x", 5)
-            .attr("y", 30)
-            .attr('font-size', 12)
-            .attr('font-family', 'Anaheim')
-            .text('Y-Axis: Period Deriavtive[s/s](log pd)[linear scale]')
-    */
-    legend
-        .append("circle")
-        .attr('cx', 95)
-        .attr('cy', 15)
-        .attr('r', 3)
-        .attr("opacity", 0.75)
-        .style('fill', 'black')
-    legend.append('text')
-        .attr("x", 5)
-        .attr("y", 25)
-        .attr('font-size', 12)
-        .attr('font-family', 'Anaheim')
-        .text('Binary')
-        /*    legend
-                .append("circle")
-                .attr('cx', 80)
-                .attr('cy', 41)
-                .attr('r', 3)
-                .attr("opacity", 0.75)
-                .style('fill', '#3D5AFE')*/
-    legend.append('text')
-        .attr("x", 100)
-        .attr("y", 25)
-        .attr('font-size', 12)
-        .attr('font-family', 'Anaheim')
-        .text('Non Binary')
-
-}
