@@ -8,8 +8,8 @@ by the organisation.
 
 ##Tools and Framework used
 
-  1 D3.js
-  2 Flask
-  3 HTML/CSS
-  4 Javascript
+    1 D3.js
+    2 Flask
+    3 HTML/CSS
+    4 Javascript
     
